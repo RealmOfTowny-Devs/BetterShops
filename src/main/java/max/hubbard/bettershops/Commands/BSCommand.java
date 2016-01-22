@@ -45,7 +45,7 @@ import java.util.List;
 public class BSCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (label.equalsIgnoreCase("bs")||label.equalsIgnoreCase("bshop")) {
+        if (label.equalsIgnoreCase("bs")||label.equalsIgnoreCase("bshop")||label.equalsIgnoreCase("shop")) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
                 if (args.length == 1) {

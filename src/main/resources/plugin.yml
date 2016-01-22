@@ -9,7 +9,7 @@ loadadter: [Wallet]
 commands:
    bs:
       description: The Main BetterShops command
-      aliases: [bshop]
+      aliases: [bshop, shop]
       usage: /<command>
 
 permissions:
