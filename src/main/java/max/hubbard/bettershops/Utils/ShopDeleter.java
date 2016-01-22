@@ -9,6 +9,7 @@ import max.hubbard.bettershops.Shops.Items.ShopItem;
 import max.hubbard.bettershops.Shops.SQLShop;
 import max.hubbard.bettershops.Shops.Shop;
 import max.hubbard.bettershops.Shops.Types.Holo.DeleteHoloShop;
+import max.hubbard.bettershops.Shops.Types.Holo.HologramManager;
 import max.hubbard.bettershops.Shops.Types.NPC.DeleteNPC;
 import org.bukkit.Bukkit;
 
@@ -49,6 +50,11 @@ public class ShopDeleter {
 
         if (shop.isHoloShop()) {
             DeleteHoloShop.deleteHologramShop(shop.getHolographicShop());
+        }
+
+        if (shop.useIcon()) {
+            HologramManager.removeIcon(shop);
+            shop.setObject("Icon", -1);
         }
 
         if (shop.isNPCShop()) {
