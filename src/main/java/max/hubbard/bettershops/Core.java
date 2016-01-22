@@ -114,6 +114,7 @@ public class Core extends JavaPlugin {
 
                 //REGISTER COMMANDS
                 getCommand("BS").setExecutor(new BSCommand());
+                getCommand("bshop").setExecutor(new BSCommand());
 
                 //UPDATE FILES
                 Language.updateFiles();
