@@ -89,7 +89,7 @@ public class CreateShop implements Listener {
                 final Chest finalChest = chest;
 
                 if (finalChest != null && ShopManager.fromLocation(finalChest.getLocation()) == null) {
-                    final AnvilManager man = new AnvilManager(p);
+                    final AnvilManager man = new AnvilManager(p, true);
                     Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
                         @Override
                         public void run() {

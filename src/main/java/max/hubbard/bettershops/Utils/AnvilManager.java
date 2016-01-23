@@ -27,15 +27,19 @@ public class AnvilManager implements Callable {
 
     String name;
     Player p;
+    Boolean forceAnvil;
 
     public AnvilManager(Player player) {
-        p = player;
+        this(player, false);
     }
 
+    public AnvilManager(Player player, boolean force) {
+        p = player;
+        forceAnvil = force;
+    }
     @Override
     public String call() {
-
-        if (Config.getObject("Anvil") != null && (boolean) Config.getObject("Anvil")) {
+        if (Config.getObject("Anvil") != null && (boolean) Config.getObject("Anvil") && forceAnvil) {
             final AtomicReference<String> result = new AtomicReference<String>();
             final CountDownLatch latch = new CountDownLatch(1);
 
