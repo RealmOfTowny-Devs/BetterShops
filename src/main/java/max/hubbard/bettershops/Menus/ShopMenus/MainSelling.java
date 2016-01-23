@@ -263,7 +263,7 @@ public class MainSelling implements ShopMenu {
         } else {
             for (final ShopItem it : shop.getShopItems()) {
                 if (inv.firstEmpty() != -1) {
-                    if (!it.isSelling()) {
+                    if (it.isSelling()) {
 
                         if (obj[0] != null) {
                             if (it.getPrice() != (int) obj[0]) {
