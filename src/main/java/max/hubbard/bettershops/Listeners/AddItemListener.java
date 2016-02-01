@@ -93,6 +93,14 @@ public class AddItemListener implements Listener {
                                                 }
 
                                                 if (shopItem == null) {
+                                                    int shopLimit = (int) Config.getObject("ShopLimit");
+                                                    System.out.println("ShopLimit: "+shopLimit);
+
+                                                    if (shopLimit != 0 && shop.getNumberOfItemsInShop() >= shopLimit) {
+                                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "FullShop"));
+                                                        return;
+                                                    }
+
                                                     int page = shop.getNextAvailablePage(false);
                                                     int s = shop.getNextSlotForPage(page, false);
 
@@ -120,6 +128,13 @@ public class AddItemListener implements Listener {
                                                     shop.setObject("Removal", "");
                                                 } else {
 
+                                                    int shopLimit = (int) Config.getObject("ShopLimit");
+
+                                                    if (shopLimit != 0 && shop.getNumberOfItemsInShop() >= shopLimit) {
+                                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "FullShop"));
+                                                        return;
+                                                    }
+
                                                     int limit = (int) Config.getObject("StockLimit");
 
                                                     if (limit != 0 && shopItem.getStock() >= limit) {
@@ -127,12 +142,24 @@ public class AddItemListener implements Listener {
                                                         return;
                                                     }
 
-                                                    if (limit != 0 && Stocks.getNumberInInventory(shopItem, p, shop) + shopItem.getStock() > limit) {
-                                                        Stocks.addStock(shopItem, limit - shopItem.getStock(), p, shop);
-                                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "StopStock"));
+                                                    if (shopLimit != 0 && Stocks.getNumberInInventory(shopItem, p, shop) + shop.getNumberOfItemsInShop() > shopLimit) {
+                                                        int addToStock = shopLimit - shop.getNumberOfItemsInShop();
+                                                        if (limit != 0 && addToStock + shopItem.getStock() > limit) {
+                                                            Stocks.addStock(shopItem, limit - shopItem.getStock(), p, shop);
+                                                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "StopStock"));
+                                                        } else {
+                                                            Stocks.addStock(shopItem, addToStock, p, shop);
+                                                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "StopFullShop"));
+                                                        }
                                                     } else {
-                                                        Stocks.addAll(shopItem, shop, p);
+                                                        if (limit != 0 && Stocks.getNumberInInventory(shopItem, p, shop) + shopItem.getStock() > limit) {
+                                                            Stocks.addStock(shopItem, limit - shopItem.getStock(), p, shop);
+                                                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "StopStock"));
+                                                        } else {
+                                                            Stocks.addAll(shopItem, shop, p);
+                                                        }
                                                     }
+
                                                     if (shop.isHoloShop()) {
                                                         ShopHologram h = shop.getHolographicShop();
                                                         h.updateItemLines(h.getItemLine(), false);

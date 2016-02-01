@@ -929,6 +929,14 @@ public class SQLShop implements Shop {
         return 18;
     }
 
+    public int getNumberOfItemsInShop() {
+        int totalStock = 0;
+        for (ShopItem item : getShopItems()) {
+            totalStock += item.getStock();
+        }
+        return totalStock;
+    }
+
     @Override
     public void convert() {
 

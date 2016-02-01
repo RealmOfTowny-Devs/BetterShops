@@ -133,6 +133,8 @@ public interface Shop {
 
     public int getNextSlotForPage(int page, boolean sell);
 
+    public int getNumberOfItemsInShop();
+
     public Sign getSign();
 
     public void convert();

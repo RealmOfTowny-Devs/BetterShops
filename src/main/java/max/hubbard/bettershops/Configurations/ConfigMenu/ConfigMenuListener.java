@@ -66,6 +66,9 @@ public class ConfigMenuListener implements Listener {
                         if (s.equalsIgnoreCase("StockLimit")) {
                             setStockLimit(p);
                         }
+                        if (s.equalsIgnoreCase("ShopLimit")) {
+                            setShopLimit(p);
+                        }
                         if (s.equalsIgnoreCase("RemoveAfter")) {
                             setRemoveAfter(p);
                         }
@@ -189,6 +192,44 @@ public class ConfigMenuListener implements Listener {
 
                 if (!can) {
                     Config.setObject("StockLimit", amt);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
+                        public void run() {
+                            ConfigMenu.openConfigMenu(null, p, 1);
+                        }
+                    }, 1L);
+                } else {
+                    p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidNumber"));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
+                        public void run() {
+                            ConfigMenu.openConfigMenu(null, p, 1);
+                        }
+                    }, 1L);
+                }
+            }
+        });
+
+
+    }
+
+    public void setShopLimit(final Player p) {
+        final AnvilManager man = new AnvilManager(p);
+        Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
+            @Override
+            public void run() {
+                final String name = man.call();
+
+                int amt = 0;
+                boolean can = true;
+                try {
+                    amt = Integer.parseInt(name);
+                    can = false;
+
+
+                } catch (Exception ex) {
+                }
+
+                if (!can) {
+                    Config.setObject("ShopLimit", amt);
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
                         public void run() {
                             ConfigMenu.openConfigMenu(null, p, 1);

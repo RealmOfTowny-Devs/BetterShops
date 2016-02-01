@@ -54,8 +54,11 @@ UseTransactions: True
 # All stock for a selling item goes to a buying item if it exists
 SellToBuy: True
 
-# Limits the amount of stock a player can have (0 = infinite)
+# Limits the amount of stock of one item a player can have (0 = infinite)
 StockLimit: 0
+
+# Limits the amount of total stock in one shop a player can have (0 = infinite)
+ShopLimit: 0
 
 # Enable Trades
 Trades: True
@@ -132,6 +135,11 @@ HoloShops: True
 
 # Enables the ability to use Live Economy
 UseLiveEco: True
+
+####  Better Search  ####
+
+# Enables the ability to use Search
+UseBetterSearch: False
 
 ####  Databases  ####
 SQL: False

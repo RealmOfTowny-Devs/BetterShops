@@ -190,7 +190,11 @@ NotAllowed: '&cYou are not allowed to use this shop.'
 
 HighStock: '&cCannot add any more stock to this item.'
 
+FullShop: '&cYour shop if full.'
+
 StopStock: '&cSome stock was not added because the limit was reached.'
+
+StopFullShop: '&cSome stock was not added because this shop is full.'
 
 Loading: '&cIt seems that this shop is still loading...'
 
