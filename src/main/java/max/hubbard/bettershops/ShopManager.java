@@ -247,6 +247,12 @@ public class ShopManager {
                     "ADD COLUMN `Removal` TEXT NULL DEFAULT NULL;");
         }
 
+        ResultSet rs7 = md.getColumns(null, null, Config.getObject("prefix") + "Shops", "Icon");
+        if (!rs7.next()) {
+            statement.executeUpdate("ALTER TABLE " + Config.getObject("prefix") + "Shops " +
+                    "ADD COLUMN `Icon` TINYINT NULL DEFAULT NULL;");
+        }
+
         ResultSet rs5 = md.getColumns(null, null, Config.getObject("prefix") + "Items", "AutoStock");
         if (!rs5.next()) {
             statement.executeUpdate("ALTER TABLE " + Config.getObject("prefix") + "Items " +

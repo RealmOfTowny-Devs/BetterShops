@@ -50,7 +50,7 @@ public class SQLUtil {
         statement = Core.getConnection().createStatement();
 
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + Config.getObject("prefix") + "Shops (Name VARCHAR(30) NOT NULL, Owner TEXT, Description TEXT, World TEXT, X INTEGER, " +
-                "Y INTEGER, Z INTEGER, NextShopId INTEGER, Open BOOLEAN, Notify BOOLEAN, Server BOOLEAN, NPC BOOLEAN, Holo BOOLEAN, Frame INTEGER, NPCInfo TEXT, Removal TEXT, PRIMARY KEY (`Name`));");
+                "Y INTEGER, Z INTEGER, NextShopId INTEGER, Open BOOLEAN, Notify BOOLEAN, Server BOOLEAN, NPC BOOLEAN, Holo BOOLEAN, Frame INTEGER, NPCInfo TEXT, Removal TEXT, Icon TINYINT PRIMARY KEY (`Name`));");
 
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + Config.getObject("prefix") + "Keepers (Shop VARCHAR(30) NOT NULL, Players TEXT);");
 
@@ -85,6 +85,7 @@ public class SQLUtil {
                 History history = shop.getHistory();
 
                 Object removal = shop.getObject("Removal");
+                Object icon = shop.getObject("Icon");
 
                 String npcIn = null;
 
@@ -92,10 +93,10 @@ public class SQLUtil {
                     npcIn = (String) shop.getObject("NPCInfo");
                 }
 
-                statement.executeUpdate("INSERT IGNORE INTO " + Config.getObject("prefix") + "Shops (`Name`, `Owner`, `Description`, `World`, `X`, `Y`, `Z`, `NextShopId`, `Open`, `Notify`, `Server`, `NPC`, `Holo`, `Frame`, `NPCInfo`, `Removal`) VALUES" +
+                statement.executeUpdate("INSERT IGNORE INTO " + Config.getObject("prefix") + "Shops (`Name`, `Owner`, `Description`, `World`, `X`, `Y`, `Z`, `NextShopId`, `Open`, `Notify`, `Server`, `NPC`, `Holo`, `Frame`, `NPCInfo`, `Removal`, `Icon`) VALUES" +
                         " ('" + name + "', '" + id + "', '" + description + "', '" + loc.getWorld().getName() + "', '" + loc.getX() + "', '" + loc.getY() + "', '" + loc.getZ() + "', '"
                         + nextId + "', " + open + ", '" + getBoolValue(notify) + "', '" + getBoolValue(server) + "', '" + getBoolValue(npc) + "', '" + getBoolValue(holo) + "', '" + shop.getFrameColor() +
-                        "', '" + npcIn + "', '" + removal + "');");
+                        "', '" + npcIn + "', '" + removal + "', '" + icon + "');");
 
                 for (OfflinePlayer pl : keepers) {
                     statement.executeUpdate("INSERT IGNORE INTO " + Config.getObject("prefix") + "Keepers (`Shop`, `Players`) VALUES ('" + name + "', '" + pl.getUniqueId().toString() + "')" +

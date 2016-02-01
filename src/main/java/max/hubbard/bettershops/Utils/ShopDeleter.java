@@ -37,6 +37,11 @@ public class ShopDeleter {
         if (shop instanceof FileShop) {
             ((FileShop) shop).file.delete();
         } else {
+            if (shop.useIcon()) {
+                HologramManager.removeIcon(shop);
+                shop.setObject("Icon", -1);
+            }
+
             try {
                 ((SQLShop) shop).statement.executeUpdate("DELETE FROM " + Config.getObject("prefix") + "Shops WHERE Name = '" + shop.getName() + "';");
                 ((SQLShop) shop).statement.executeUpdate("DELETE FROM " + Config.getObject("prefix") + "Trades WHERE Shop = '" + shop.getName() + "';");
@@ -50,11 +55,6 @@ public class ShopDeleter {
 
         if (shop.isHoloShop()) {
             DeleteHoloShop.deleteHologramShop(shop.getHolographicShop());
-        }
-
-        if (shop.useIcon()) {
-            HologramManager.removeIcon(shop);
-            shop.setObject("Icon", -1);
         }
 
         if (shop.isNPCShop()) {

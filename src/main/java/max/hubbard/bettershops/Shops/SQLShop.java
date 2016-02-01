@@ -771,12 +771,15 @@ public class SQLShop implements Shop {
 
     @Override
     public ShopIcon getShopIcon() {
-        return null;
+        return HologramManager.getShopIcons().get(this);
     }
 
     @Override
     public boolean useIcon() {
-        return false;
+        Object o = getObject("Icon");
+        if(o == null) return false;
+        if(!(o instanceof Integer)) return false;
+        return ((int)o != -1);
     }
 
     public boolean isOpen() {
