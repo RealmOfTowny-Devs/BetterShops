@@ -18,7 +18,7 @@ public class WorldGuardStuff {
 
     public static void allowMobs(Location l) {
 
-        for (com.sk89q.worldguard.protection.regions.ProtectedRegion r : Core.getWorldGuard().getRegionManager(l.getWorld()).getApplicableRegions(l)) {
+        for (com.sk89q.worldguard.protection.regions.ProtectedRegion r : Core.getWorldGuard().getRegionManager(l.getWorld()).getApplicableRegions((Location)l)) {
             r.setFlag(com.sk89q.worldguard.protection.flags.DefaultFlag.MOB_SPAWNING, com.sk89q.worldguard.protection.flags.StateFlag.State.ALLOW);
         }
     }

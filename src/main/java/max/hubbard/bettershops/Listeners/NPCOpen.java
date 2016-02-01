@@ -73,7 +73,8 @@ public class NPCOpen implements Listener {
 
     @EventHandler
     public void onHit(EntityDamageEvent e) {
-        Entity ent = e.getEntity();
+        if(!(e.getEntity() instanceof LivingEntity)) { return; }
+        LivingEntity ent = (LivingEntity)e.getEntity();
 
         if (ent.getCustomName() != null && ent.getCustomName().contains("§a§l")) {
 

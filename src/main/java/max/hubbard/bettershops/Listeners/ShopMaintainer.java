@@ -56,7 +56,7 @@ public class ShopMaintainer implements Listener {
         }
     }
 
-    @EventHandler
+    /*@EventHandler
     public void onBlockExplode(BlockExplodeEvent e) {
         for (final Block b : e.blockList()) {
             Shop shop = ShopManager.fromLocation(b.getLocation());
@@ -69,7 +69,7 @@ public class ShopMaintainer implements Listener {
                 }, 5L);
             }
         }
-    }
+    }*/
 
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent e) {

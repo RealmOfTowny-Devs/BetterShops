@@ -186,10 +186,15 @@ public class FileShop implements Shop {
     public Object getObject(String s) {
         return config.get(s);
     }
-
+    long last = 0L;
     public void setObject(String path, Object obj) {
         config.set(path, obj);
-//        saveConfig();
+        long now = System.currentTimeMillis();
+        if(now - last > 30000)
+        {
+            last = now;
+            saveConfig();
+        }
     }
 
     public String getName() {
@@ -758,7 +763,10 @@ public class FileShop implements Shop {
 
     @Override
     public boolean useIcon() {
-        return getObject("Icon") != null && config.isInt("Icon") && (int)getObject("Icon") != -1;
+        Object o = getObject("Icon");
+        if(o == null) return false;
+        if(!config.isInt("Icon")) return false;
+        return (config.getInt("Icon") != -1);
     }
 
     public boolean isOpen() {
