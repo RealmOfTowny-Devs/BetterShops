@@ -68,7 +68,7 @@ public class SignChange {
                             line4 = Language.getString("MainGUI", "SignShopLine4").replaceAll("<Amount>", "" + SignShopManager.getAmounts().get(s));
 
                             lines = new String[]{
-                                    line1, line2, line4, line3
+                                    line1, line2, line3, line4
                             };
 
                             Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
@@ -126,7 +126,7 @@ public class SignChange {
                         line4 = Language.getString("MainGUI", "SignShopLine4").replaceAll("<Amount>", "" + SignShopManager.getAmounts().get(s));
 
                         lines = new String[]{
-                                line1, line2, line4, line3
+                                line1, line2, line3, line4
                         };
 
                         SignChange.doSignChange(s, SignShopManager.getSigns().get(s), p, lines);
