@@ -279,11 +279,21 @@ public class SQLShopItem implements ShopItem {
     }
 
     public boolean isInfinite() {
-        return (Boolean) getObject("Infinite");
+        if (getObject("Infinite") != null)
+            return (Boolean) getObject("Infinite");
+        else {
+            setObject("Infinite", false);
+            return false;
+        }
     }
 
     public boolean getLiveEco() {
-        return (Boolean) getObject("LiveEconomy");
+        if (getObject("LiveEconomy") != null)
+            return (Boolean) getObject("LiveEconomy");
+        else {
+            setObject("LiveEconomy", false);
+            return false;
+        }
     }
 
     @Override
