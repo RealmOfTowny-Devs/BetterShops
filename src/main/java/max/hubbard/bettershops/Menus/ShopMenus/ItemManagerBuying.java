@@ -461,7 +461,7 @@ public class ItemManagerBuying implements ShopMenu {
 
         ItemStack icon = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 14);
         ItemMeta iconMeta = icon.getItemMeta();
-        if (shop.useIcon() && shop.getShopIcon().getItem().equals(it)) {
+        if (shop.useIcon() && (shop.getShopIcon().getItem().equals(it) || shop.getShopIcon().getItem().getItem().equals(it))) {
             iconMeta.setDisplayName(Language.getString("ItemTexts", "IconOn"));
             icon = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 5);
         } else {
