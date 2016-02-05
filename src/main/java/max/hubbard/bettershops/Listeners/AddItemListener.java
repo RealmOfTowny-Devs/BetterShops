@@ -94,7 +94,6 @@ public class AddItemListener implements Listener {
 
                                                 if (shopItem == null) {
                                                     int shopLimit = (int) Config.getObject("ShopLimit");
-                                                    System.out.println("ShopLimit: "+shopLimit);
 
                                                     if (shopLimit != 0 && shop.getNumberOfItemsInShop() >= shopLimit) {
                                                         p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "FullShop"));
