@@ -63,7 +63,7 @@ public class SignChange {
                                 line2 = Language.getString("MainGUI", "SignShopLine2").replaceAll("<Item>", WordsCapitalizer.capitalizeEveryWord(SignShopManager.getSigns().get(s).name().replaceAll("_", " ")).replaceAll(" ", ""));
                             }
 
-                            line3 = "§a$" + Language.getString("MainGUI", "SignShopLine3").replaceAll("<Price>", "" + SignShopManager.getPrices().get(s));
+                            line3 = Language.getString("MainGUI", "SignShopLine3").replaceAll("<Price>", "" + SignShopManager.getPrices().get(s)).replaceAll("<Currency>", Language.getString("MainGUI", "EconomyCurrency"));
 
                             line4 = Language.getString("MainGUI", "SignShopLine4").replaceAll("<Amount>", "" + SignShopManager.getAmounts().get(s));
 
@@ -121,7 +121,7 @@ public class SignChange {
                             line2 = Language.getString("MainGUI", "SignShopLine2").replaceAll("<Item>", WordsCapitalizer.capitalizeEveryWord(SignShopManager.getSigns().get(s).name().replaceAll("_", " ")).replaceAll(" ", ""));
                         }
 
-                        line3 = "§a$" + Language.getString("MainGUI", "SignShopLine3").replaceAll("<Price>", "" + SignShopManager.getPrices().get(s));
+                        line3 = Language.getString("MainGUI", "SignShopLine3").replaceAll("<Price>", "" + SignShopManager.getPrices().get(s)).replaceAll("<Currency>", Language.getString("MainGUI", "EconomyCurrency"));
 
                         line4 = Language.getString("MainGUI", "SignShopLine4").replaceAll("<Amount>", "" + SignShopManager.getAmounts().get(s));
 
