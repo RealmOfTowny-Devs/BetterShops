@@ -50,7 +50,7 @@ public class SQLUtil {
         statement = Core.getConnection().createStatement();
 
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + Config.getObject("prefix") + "Shops (Name VARCHAR(30) NOT NULL, Owner TEXT, Description TEXT, World TEXT, X INTEGER, " +
-                "Y INTEGER, Z INTEGER, NextShopId INTEGER, Open BOOLEAN, Notify BOOLEAN, Server BOOLEAN, NPC BOOLEAN, Holo BOOLEAN, Frame INTEGER, NPCInfo TEXT, Removal TEXT, Icon TINYINT PRIMARY KEY (`Name`));");
+                "Y INTEGER, Z INTEGER, NextShopId INTEGER, Open BOOLEAN, Notify BOOLEAN, Server BOOLEAN, NPC BOOLEAN, Holo BOOLEAN, Frame INTEGER, NPCInfo TEXT, Removal TEXT, Icon TINYINT, PRIMARY KEY (`Name`));");
 
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + Config.getObject("prefix") + "Keepers (Shop VARCHAR(30) NOT NULL, Players TEXT);");
 
@@ -266,7 +266,7 @@ public class SQLUtil {
         /**
          * Represent a date and a time with year, month, day, hour, minute, and second values
          */
-        TIMESTAMP;
+        TIMESTAMP
     }
 
 
