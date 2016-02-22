@@ -148,16 +148,16 @@ public class MainSelling implements ShopMenu {
         ItemStack info = new ItemStack(Material.SIGN);
         ItemMeta infoMeta = info.getItemMeta();
         infoMeta.setDisplayName(Language.getString("MainGUI", "Selling"));
-        infoMeta.setLore(Arrays.asList(Language.getString("MainGUI", "ToggleShop"), Language.getString("MainGUI", "SearchOptions")));
+        infoMeta.setLore(Arrays.asList(Language.getString("MainGUI", "ToggleShop")/*, Language.getString("MainGUI", "SearchOptions")*/));
         info.setItemMeta(infoMeta);
 
         ClickableItem infoClick = new ClickableItem(new ShopItemStack(info), inv, p);
-        infoClick.addLeftClickAction(new LeftClickAction() {
+        /*infoClick.addLeftClickAction(new LeftClickAction() {
             @Override
             public void onAction(InventoryClickEvent e) {
                 shop.getMenu(MenuType.SEARCH_ENGINE).draw(p, page, true);
             }
-        });
+        });*/
         infoClick.addRightClickAction(new RightClickAction() {
             @Override
             public void onAction(InventoryClickEvent e) {
