@@ -69,9 +69,9 @@ public class BSCommand implements CommandExecutor {
                         p.sendMessage(Language.getString("Messages", "Prefix") + "You are running version: §e" + Bukkit.getPluginManager().getPlugin("BetterShops").getDescription().getVersion());
 
                         p.sendMessage(Language.getString("Messages", "Prefix") + "Total Shops: §e" + ShopManager.getShops().size());
-                        p.sendMessage(Language.getString("Messages", "Prefix") + "Total NPC Shops: §e" + NPCManager.getNPCShops().size());
+                        /*p.sendMessage(Language.getString("Messages", "Prefix") + "Total NPC Shops: §e" + NPCManager.getNPCShops().size());
                         p.sendMessage(Language.getString("Messages", "Prefix") + "Total Holographic Shops: §e" + HologramManager.getHolographicShops().size());
-                        p.sendMessage(Language.getString("Messages", "Prefix") + "Total Sign Shops: §e" + SignShopManager.getSigns().size());
+                        p.sendMessage(Language.getString("Messages", "Prefix") + "Total Sign Shops: §e" + SignShopManager.getSigns().size());*/
                     } else if (args[0].equalsIgnoreCase("update")) {
                         if (Permissions.hasUpdatePerm(p)) {
                             Updater.parseFile();
@@ -103,7 +103,7 @@ public class BSCommand implements CommandExecutor {
                     } else if (args[0].equalsIgnoreCase("list")) {
                         if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p) || !(boolean) Config.getObject("Permissions")) {
                             List<Shop> shops = ShopManager.getShops();
-                            p.sendMessage("§d<-Listing Shops (§c" + shops.size() + "§d)->");
+                            p.sendMessage("§d<- Seznam Obchodu (§c" + shops.size() + "§d) ->");
                             for (int i = 1; i < shops.size() + 1; i++) {
                                 if (shops.get(i - 1).isNPCShop() || shops.get(i - 1).getNPCShop() != null) {
                                     p.sendMessage("§c" + i + ". §a" + shops.get(i - 1).getName() + " §e(NPC)");
@@ -113,23 +113,21 @@ public class BSCommand implements CommandExecutor {
                                     p.sendMessage("§c" + i + ". §a" + shops.get(i - 1).getName());
                                 }
                             }
-                            p.sendMessage("§d<-Listing Shops (§c" + shops.size() + "§d)->");
                         } else {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NoPermission"));
                         }
                     } else {
-                        p.sendMessage("§d<-Better Shops Help->");
+                        p.sendMessage("§d<- Napoveda ->");
                         p.sendMessage("    §a/bs info");
-                        p.sendMessage("    §a/bs update");
-                        p.sendMessage("    §a/bs config");
-                        p.sendMessage("    §a/bs language");
-                        p.sendMessage("    §a/bs blacklist");
-                        p.sendMessage("    §a/bs open <Shop>");
-                        p.sendMessage("    §a/bs remove <Shop>");
-                        p.sendMessage("    §a/bs move <Shop>");
-                        p.sendMessage("    §a/bs list <Player>");
-                        p.sendMessage("    §a/bs migrate");
-                        p.sendMessage("§d<-Better Shops Help->");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasUpdatePerm(p)) p.sendMessage("    §a/bs update");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasConfigGUIPerm(p)) p.sendMessage("    §a/bs config");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasLanguagePerm(p)) p.sendMessage("    §a/bs language");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasBlacklistCommandPerm(p)) p.sendMessage("    §a/bs blacklist");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasOpenCommandPerm(p)) p.sendMessage("    §a/bs open <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasRemoveCommandPerm(p)) p.sendMessage("    §a/bs remove <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasMoveCommandPerm(p)) p.sendMessage("    §a/bs move <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p)) p.sendMessage("    §a/bs list <Player>");
+                        if (p.isOp()) p.sendMessage("    §a/bs migrate");
                     }
                 } else if (args.length >= 2) {
 
@@ -162,6 +160,9 @@ public class BSCommand implements CommandExecutor {
                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "Loading"));
                                 }
                             }
+                        } else if ((boolean) Config.getObject("Permissions") && !Permissions.hasMoveCommandPerm(p)) {
+                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NoPermission"));
+                            return true;
                         }
 
                     } else if (args[0].equalsIgnoreCase("open")) {
@@ -224,16 +225,16 @@ public class BSCommand implements CommandExecutor {
                                             p.sendMessage("§c" + i + ". §a" + shops.get(i - 1).getName());
                                         }
                                     }
-                                    p.sendMessage("§d<-Listing §e" + pl.getName() + "'s §dShops (§c" + shops.size() + "§d)->");
+                                    //p.sendMessage("§d<-Listing §e" + pl.getName() + "'s §dShops (§c" + shops.size() + "§d)->");
                                 } else {
                                     p.sendMessage("§d<-Listing §e" + pl.getName() + "'s §dShops (§c0§d)->");
                                     p.sendMessage("§cNo Shops");
-                                    p.sendMessage("§d<-Listing §e" + pl.getName() + "'s §dShops (§c0§d)->");
+                                    //p.sendMessage("§d<-Listing §e" + pl.getName() + "'s §dShops (§c0§d)->");
                                 }
                             } else {
                                 p.sendMessage("§d<-Listing §e" + name + "'s §dShops (§c0§d)->");
                                 p.sendMessage("§cNo Shops");
-                                p.sendMessage("§d<-Listing §e" + name + "'s §dShops (§c0§d)->");
+                                //p.sendMessage("§d<-Listing §e" + name + "'s §dShops (§c0§d)->");
                             }
                         } else {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NoPermission"));
@@ -302,7 +303,7 @@ public class BSCommand implements CommandExecutor {
 
                                                 }
                                             } else {
-                                                p.sendMessage(Language.getString("Messages", "Prefix") + "§4ERROR: §cShop is non-existant, please tell a server operator of this problem");
+                                                p.sendMessage(Language.getString("Messages", "Prefix") + "§4ERROR: §cObchod neexistuje, oznam to moderatorum.");
                                             }
 
                                         } else if (shop.isNPCShop() || shop.getNPCShop() != null) {
@@ -397,7 +398,7 @@ public class BSCommand implements CommandExecutor {
 
                                                 }
                                             } else {
-                                                p.sendMessage(Language.getString("Messages", "Prefix") + "§4ERROR: §cShop is non-existant, please tell a server operator of this problem");
+                                                p.sendMessage(Language.getString("Messages", "Prefix") + "§4ERROR: §cObchod neexistuje, oznam to moderatorum.");
                                             }
                                         }
                                     } else {
@@ -415,33 +416,31 @@ public class BSCommand implements CommandExecutor {
                         }
 
                     } else {
-                        p.sendMessage("§d<-Better Shops Help->");
+                        p.sendMessage("§d<- Napoveda ->");
                         p.sendMessage("    §a/bs info");
-                        p.sendMessage("    §a/bs update");
-                        p.sendMessage("    §a/bs config");
-                        p.sendMessage("    §a/bs language");
-                        p.sendMessage("    §a/bs blacklist");
-                        p.sendMessage("    §a/bs open <Shop>");
-                        p.sendMessage("    §a/bs remove <Shop>");
-                        p.sendMessage("    §a/bs move <Shop>");
-                        p.sendMessage("    §a/bs list <Player>");
-                        p.sendMessage("    §a/bs migrate");
-                        p.sendMessage("§d<-Better Shops Help->");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasUpdatePerm(p)) p.sendMessage("    §a/bs update");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasConfigGUIPerm(p)) p.sendMessage("    §a/bs config");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasLanguagePerm(p)) p.sendMessage("    §a/bs language");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasBlacklistCommandPerm(p)) p.sendMessage("    §a/bs blacklist");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasOpenCommandPerm(p)) p.sendMessage("    §a/bs open <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasRemoveCommandPerm(p)) p.sendMessage("    §a/bs remove <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasMoveCommandPerm(p)) p.sendMessage("    §a/bs move <Shop>");
+                        if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p)) p.sendMessage("    §a/bs list <Player>");
+                        if (p.isOp()) p.sendMessage("    §a/bs migrate");
                     }
 
                 } else {
-                    p.sendMessage("§d<-Better Shops Help->");
+                    p.sendMessage("§d<- Napoveda ->");
                     p.sendMessage("    §a/bs info");
-                    p.sendMessage("    §a/bs update");
-                    p.sendMessage("    §a/bs config");
-                    p.sendMessage("    §a/bs language");
-                    p.sendMessage("    §a/bs blacklist");
-                    p.sendMessage("    §a/bs open <Shop>");
-                    p.sendMessage("    §a/bs remove <Shop>");
-                    p.sendMessage("    §a/bs move <Shop>");
-                    p.sendMessage("    §a/bs list <Player>");
-                    p.sendMessage("    §a/bs migrate");
-                    p.sendMessage("§d<-Better Shops Help->");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasUpdatePerm(p)) p.sendMessage("    §a/bs update");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasConfigGUIPerm(p)) p.sendMessage("    §a/bs config");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasLanguagePerm(p)) p.sendMessage("    §a/bs language");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasBlacklistCommandPerm(p)) p.sendMessage("    §a/bs blacklist");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasOpenCommandPerm(p)) p.sendMessage("    §a/bs open <Shop>");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasRemoveCommandPerm(p)) p.sendMessage("    §a/bs remove <Shop>");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasMoveCommandPerm(p)) p.sendMessage("    §a/bs move <Shop>");
+                    if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p)) p.sendMessage("    §a/bs list <Player>");
+                    if (p.isOp()) p.sendMessage("    §a/bs migrate");
                 }
             }
             return true;
