@@ -82,7 +82,7 @@ public class AmountChooser implements ShopMenu {
                         boolean can;
                         int amt = 0;
                         try {
-                            amt = Integer.parseInt(name);
+                            amt = Math.abs(Integer.parseInt(name));
                             can = true;
                         } catch (Exception ex) {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidNumber"));
