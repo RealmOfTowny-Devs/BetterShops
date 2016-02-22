@@ -20,6 +20,7 @@ public class GUIMessageListener implements Listener{
     @EventHandler
     public void onGUIClick(InventoryClickEvent e){
 
+        if(e.getInventory() == null || e.getInventory().getName() == null) return;
         if (e.getInventory().getName().equals("§7[BetterShops] §dLanguages")){
             Player p = (Player) e.getWhoClicked();
 
