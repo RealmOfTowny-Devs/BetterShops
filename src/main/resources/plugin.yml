@@ -116,7 +116,7 @@ permissions:
         default: op
     bettershops.command.move:
         description: Allows ability to use the /bs move <Shop> command
-        default: true
+        default: op
     bettershops.command.open:
         description: Allows ability to use the /bs open <Shop> command
         default: op
