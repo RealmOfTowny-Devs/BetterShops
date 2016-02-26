@@ -113,33 +113,40 @@ public class ShopSettings implements ShopMenu {
 
         ItemStack owner = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
         SkullMeta ownerMeta = (SkullMeta) owner.getItemMeta();
-        ownerMeta.setDisplayName(Language.getString("ShopSettings", "ChangeOwner"));
-        ownerMeta.setLore(Arrays.asList(Language.getString("ShopSettings", "ChangeOwnerLore")));
-        ownerMeta.setOwner(shop.getOwner().getName());
-        owner.setItemMeta(ownerMeta);
-        ClickableItem ownerClick = new ClickableItem(new ShopItemStack(owner), inv, p);
-        ownerClick.addLeftClickAction(new LeftClickAction() {
-            @Override
-            public void onAction(InventoryClickEvent e) {
-                final AnvilManager man = new AnvilManager(p);
-                Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
-                    @Override
-                    public void run() {
-                        String na = man.call();
-                        OfflinePlayer pl = Bukkit.getOfflinePlayer(na);
-                        if (pl.hasPlayedBefore()) {
-                            if (shop.setOwner(pl)) {
-                                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "ChangeOwner"));
+        if (Permissions.hasChangeOwnerPerm(p)) {
+            ownerMeta.setDisplayName(Language.getString("ShopSettings", "ChangeOwner"));
+            ownerMeta.setLore(Arrays.asList(Language.getString("ShopSettings", "ChangeOwnerLore")));
+            ownerMeta.setOwner(shop.getOwner().getName());
+            owner.setItemMeta(ownerMeta);
+            ClickableItem ownerClick = new ClickableItem(new ShopItemStack(owner), inv, p);
+            ownerClick.addLeftClickAction(new LeftClickAction() {
+                @Override
+                public void onAction(InventoryClickEvent e) {
+                    final AnvilManager man = new AnvilManager(p);
+                    Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
+                        @Override
+                        public void run() {
+                            String na = man.call();
+                            OfflinePlayer pl = Bukkit.getOfflinePlayer(na);
+                            if (pl.hasPlayedBefore()) {
+                                if (shop.setOwner(pl)) {
+                                    p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "ChangeOwner"));
+                                } else {
+                                    p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AtLimit"));
+                                }
                             } else {
-                                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AtLimit"));
+                                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidKeeper"));
                             }
-                        } else {
-                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidKeeper"));
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
+        } else {
+            ownerMeta.setDisplayName(Language.getString("ShopSettings", "ShopOwner"));
+            ownerMeta.setLore(Arrays.asList(Language.getString("ShopSettings", "ShopOwnerLore").replaceAll("<ShopOwner>", "" + p.getDisplayName())));
+            ownerMeta.setOwner(shop.getOwner().getName());
+            owner.setItemMeta(ownerMeta);
+        }
 
         ItemStack blacklist = new ItemStack(Material.IRON_FENCE);
         ItemMeta blacklistMeta = blacklist.getItemMeta();

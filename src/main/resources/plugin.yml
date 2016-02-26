@@ -29,6 +29,7 @@ permissions:
             bettershops.shop.blacklist: true
             bettershops.shop.playerblacklist: true
             bettershops.shop.autostock: true
+            bettershops.shop.changeowner: true
             bettershops.npc.*: true
             bettershops.command.*: true
             bettershops.buy.*: true
@@ -73,6 +74,9 @@ permissions:
         default: true
     bettershops.shop.autostock:
         description: Allows ability to use auto stock
+        default: op
+    bettershops.shop.changeowner:
+        description: Allows ability to change shop owner
         default: op
     bettershops.buy.*:
         description: Access to buy all items

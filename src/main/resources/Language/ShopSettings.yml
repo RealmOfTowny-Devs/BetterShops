@@ -22,6 +22,9 @@ ChangeNameLore: '&e&lLeft Click &7to change shop &dName'
 ChangeOwner: '&a&lChange Owner'
 ChangeOwnerLore: '&e&lLeft Click &7to change shop &dOwner'
 
+ShopOwner: '&a&lShop owner'
+ShopOwnerLore: '&7Shop owner: &d<ShopOwner>'
+
 Blacklist: '&a&lPlayer Blacklist'
 BlacklistLore: '&e&lLeft Click &7to manage &aPlayer Blacklist'
 

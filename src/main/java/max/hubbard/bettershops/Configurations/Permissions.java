@@ -91,6 +91,10 @@ public class Permissions {
         return p.isOp() || p.getPlayer().hasPermission("bettershops.shop.autostock") || p.getPlayer().hasPermission("bettershops.shop.*");
     }
 
+    public static boolean hasChangeOwnerPerm(OfflinePlayer p) {
+        return p.isOp() || p.getPlayer().hasPermission("bettershops.shop.changeowner") || p.getPlayer().hasPermission("bettershops.shop.*");
+    }
+
     public static boolean hasConfigGUIPerm(OfflinePlayer p) {
         return p.isOp() || p.getPlayer().hasPermission("bettershops.command.config") || p.getPlayer().hasPermission("bettershops.command.*");
     }
