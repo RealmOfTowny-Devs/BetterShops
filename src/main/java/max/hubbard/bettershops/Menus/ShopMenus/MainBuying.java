@@ -300,7 +300,7 @@ public class MainBuying implements ShopMenu {
                     if (!it.isSelling()) {
 
                         if (obj[0] != null) {
-                            if (it.getPrice() != (int) obj[0]) {
+                            if (it.getPrice() != (double) obj[0]) {
                                 continue;
                             }
                         }
