@@ -286,7 +286,11 @@ public class FileShop implements Shop {
         }
 
         if (useIcon()) {
-            HologramManager.addIcon(new ShopIcon(FileShopItem.loadShopItem(this, (int) getObject("Icon"))));
+            if (items.size() == 0) {
+                setObject("Icon", -1);
+            } else {
+                HologramManager.addIcon(new ShopIcon(FileShopItem.loadShopItem(this, (int) getObject("Icon"))));
+            }
         }
 
         if (isHoloShop()) {
