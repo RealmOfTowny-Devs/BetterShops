@@ -356,7 +356,7 @@ public class FileShopItem implements ShopItem {
     }
 
     public void setPrice(double price) {
-        setObject("Price", price);
+        setObject("Price", Math.abs(price));
 
         if (!getLiveEco()) {
             setAdjustedPrice(price);
