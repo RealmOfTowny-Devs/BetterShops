@@ -25,6 +25,7 @@ public class ShopIcon {
 
     public ShopIcon(final ShopItem item){
         this.item = item;
+        if (item == null) return;
         shop = item.getShop();
 
         Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("BetterShops"), new Runnable() {
