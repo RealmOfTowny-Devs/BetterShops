@@ -1,5 +1,7 @@
 package max.hubbard.bettershops.Utils;
 
+import com.griefcraft.lwc.LWC;
+import com.griefcraft.model.Protection;
 import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.Events.ShopDeleteEvent;
@@ -12,6 +14,8 @@ import max.hubbard.bettershops.Shops.Types.Holo.DeleteHoloShop;
 import max.hubbard.bettershops.Shops.Types.Holo.HologramManager;
 import max.hubbard.bettershops.Shops.Types.NPC.DeleteNPC;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -33,6 +37,22 @@ public class ShopDeleter {
 
         for (ShopItem item : shop.getShopItems()) {
             Stocks.throwItemsOnGroundInThread(item);
+        }
+
+        if ((boolean) Config.getObject("UseLWC") && Core.useLWC()) {
+            Location chest = shop.getLocation();
+            Protection existingChestProtection = LWC.getInstance().getPhysicalDatabase().loadProtection(chest.getWorld().getName(), chest.getBlockX(), chest.getBlockY(), chest.getBlockZ());
+            if (existingChestProtection != null) {
+                existingChestProtection.remove();
+
+            }
+            if (shop.getSign() != null) {
+                Block sign = shop.getSign().getBlock();
+                Protection existingSignProtection = LWC.getInstance().getPhysicalDatabase().loadProtection(sign.getWorld().getName(), sign.getX(), sign.getY(), sign.getZ());
+                if (existingSignProtection != null) {
+                    existingSignProtection.remove();
+                }
+            }
         }
         if (shop instanceof FileShop) {
             ((FileShop) shop).file.delete();

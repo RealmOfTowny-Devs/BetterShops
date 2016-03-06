@@ -1,5 +1,7 @@
 package max.hubbard.bettershops.Listeners;
 
+import com.griefcraft.lwc.LWC;
+import com.griefcraft.model.Protection;
 import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Configurations.Language;
 import max.hubbard.bettershops.Configurations.Permissions;
@@ -125,6 +127,21 @@ public class CreateShop implements Listener {
                                             s.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                                             s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
+                                            Block block = e.getBlock();
+                                            String worldName = block.getWorld().getName();
+
+                                            if ((boolean) Config.getObject("UseLWC") && Core.useLWC()) {
+                                                try {
+                                                    Protection protectionSign = LWC.getInstance().getPhysicalDatabase().registerProtection(block.getTypeId(), Protection.Type.PRIVATE, worldName, p.getName(), "", block.getX(), block.getY(), block.getZ());
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                                try {
+                                                    Protection protectionChest = LWC.getInstance().getPhysicalDatabase().registerProtection(finalChest.getBlock().getTypeId(), Protection.Type.PRIVATE, worldName, p.getName(), "", finalChest.getBlock().getX(), finalChest.getBlock().getY(), finalChest.getBlock().getZ());
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
                                             s.update();
                                         }
 

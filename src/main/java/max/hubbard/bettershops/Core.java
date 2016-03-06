@@ -59,6 +59,7 @@ public class Core extends JavaPlugin {
     private static boolean wg = false;
     private static boolean beta = false;
     private static boolean citizens = false;
+    private static boolean lwc = false;
     private static Connection c;
     private static Database db;
 
@@ -198,6 +199,11 @@ public class Core extends JavaPlugin {
                     Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §aLoading support for §eCitizens");
                 }
 
+                if (getLWC() != null) {
+                    lwc = true;
+                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §aLoading support for §eLWC");
+                }
+
                 if (Config.getObject("SQL").equals("true") || (boolean) Config.getObject("SQL")) {
                     String user = String.valueOf(Config.getObject("username"));
                     String pass = String.valueOf(Config.getObject("password"));
@@ -257,6 +263,10 @@ public class Core extends JavaPlugin {
 
     public static boolean useHolograms() {
         return holo;
+    }
+
+    public static boolean useLWC() {
+        return lwc;
     }
 
     public static Metrics getMetrics() {
@@ -363,6 +373,16 @@ public class Core extends JavaPlugin {
         return plugin;
     }
 
+    private Plugin getLWC() {
+        Plugin plugin = getServer().getPluginManager().getPlugin("LWC");
+
+        // HD may not be loaded
+        if (plugin == null || !plugin.isEnabled()) {
+            return null; // Maybe you want throw an exception instead
+        }
+
+        return plugin;
+    }
 
     public void setUpMetrics() {
         Metrics.Graph shops = metrics.createGraph("Number of Shops per Server");

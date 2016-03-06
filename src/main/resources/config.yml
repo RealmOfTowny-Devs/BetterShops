@@ -63,6 +63,9 @@ ShopLimit: 0
 # Enable Trades
 Trades: True
 
+# Protect Chests with LWC? (True/False)
+UseLWC: True
+
 ####  Shop Creation  ####
 
 # Enable Shop Creation Limits (True/False)

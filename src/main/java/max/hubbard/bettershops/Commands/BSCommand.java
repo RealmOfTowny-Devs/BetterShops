@@ -1,5 +1,7 @@
 package max.hubbard.bettershops.Commands;
 
+import com.griefcraft.lwc.LWC;
+import com.griefcraft.model.Protection;
 import max.hubbard.bettershops.Configurations.Blacklist;
 import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Configurations.ConfigMenu.ConfigMenu;
@@ -281,6 +283,16 @@ public class BSCommand implements CommandExecutor {
                                                                     Chest ch = (Chest) face.getState();
 
                                                                     if (ch.getLocation().equals(loc)) {
+                                                                        if ((boolean) Config.getObject("UseLWC") && Core.useLWC()) {
+                                                                            Protection existingChestProtection = LWC.getInstance().getPhysicalDatabase().loadProtection(face.getWorld().getName(), face.getX(), face.getY(), face.getZ());
+                                                                            if (existingChestProtection != null) {
+                                                                                existingChestProtection.remove();
+                                                                            }
+                                                                            Protection existingSignProtection = LWC.getInstance().getPhysicalDatabase().loadProtection(sign.getWorld().getName(), sign.getX(), sign.getY(), sign.getZ());
+                                                                            if (existingSignProtection != null) {
+                                                                                existingSignProtection.remove();
+                                                                            }
+                                                                        }
                                                                         sign.getBlock().setType(Material.AIR);
                                                                         sign.getWorld().dropItem(loc, new ItemStack(Material.SIGN));
                                                                     }
