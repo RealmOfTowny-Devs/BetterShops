@@ -107,7 +107,7 @@ public class AddItemListener implements Listener {
                                                     ShopItem sItem = shop.createShopItem(item, s, page, false);
 
                                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
 
 
                                                     int am = ite.getAmount() - 1;
@@ -171,7 +171,7 @@ public class AddItemListener implements Listener {
                                                     } else {
                                                         shop.getMenu(MenuType.OWNER_BUYING).draw(p, shopItem.getPage());
                                                     }
-                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
                                                 }
                                             } else {
                                                 p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "Blacklist"));
@@ -198,7 +198,7 @@ public class AddItemListener implements Listener {
                                                     ShopItem sItem = shop.createShopItem(item, s, page, true);
 
                                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
 
                                                     if (shop.isServerShop()) {
                                                         shop.getMenu(MenuType.MAIN_SELLING).draw(p, page);

@@ -223,7 +223,7 @@ public class Blacklist implements Listener {
                             item.setAmount(1);
 
                             addItem(item);
-                            p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                            p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
                             openBlacklistInventory(e.getInventory(), p, 1);
 
                             return;
@@ -261,7 +261,7 @@ public class Blacklist implements Listener {
                 //Remove Item
                 if (getItems().contains(e.getCurrentItem())) {
                     removeItem(e.getCurrentItem());
-                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                    p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
                     openBlacklistInventory(e.getInventory(), p, 1);
 
                 }

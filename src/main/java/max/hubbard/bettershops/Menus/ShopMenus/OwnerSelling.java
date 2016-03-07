@@ -222,7 +222,7 @@ public class OwnerSelling implements ShopMenu {
                         if (m.size() > 0) {
                             shop.createShopItem(new ItemStack(m.get(0)), shop.getNextSlotForPage(shop.getNextAvailablePage(true), true), shop.getNextAvailablePage(true), true);
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                            p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
+                            p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
                         } else {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidItem"));
                         }
