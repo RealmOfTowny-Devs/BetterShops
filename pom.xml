@@ -5,7 +5,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.8.8-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.9-R0.1-SNAPSHOT</spigot.version>
         <build.number>SNAPSHOT</build.number>
     </properties>
 
@@ -52,6 +52,10 @@
             <id>lwc-repo</id>
             <url>http://dev.escapecraft.com/maven/</url>
         </repository>
+        <repository>
+            <id>cnaude-repo</id>
+            <url>http://cnaude.org/repo/</url>
+        </repository>
     </repositories>
     <dependencies>
         
@@ -63,10 +67,17 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-1.8</artifactId>
+            <version>1.8.8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/spigot-1.8.8.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>com.gmail.filoghost.holographicdisplays</groupId>
             <artifactId>HolographicDisplays</artifactId>
-            <scope>system</scope>
             <version>2.1.11</version>
+            <scope>system</scope>
             <systemPath>${basedir}/lib/HolographicDisplays.jar</systemPath>
         </dependency>
         <dependency>

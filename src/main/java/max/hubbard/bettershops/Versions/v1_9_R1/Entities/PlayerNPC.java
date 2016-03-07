@@ -1,12 +1,12 @@
-package max.hubbard.bettershops.Versions.v1_8_R3.Entities;
+package max.hubbard.bettershops.Versions.v1_9_R1.Entities;
 
 import com.mojang.authlib.GameProfile;
-import max.hubbard.bettershops.Versions.v1_8_R3.NPCConnection;
-import net.minecraft.server.v1_8_R3.*;
+import max.hubbard.bettershops.Versions.v1_9_R1.NPCConnection;
+import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 

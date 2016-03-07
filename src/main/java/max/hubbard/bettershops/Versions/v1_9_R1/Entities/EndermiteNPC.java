@@ -1,10 +1,10 @@
-package max.hubbard.bettershops.Versions.v1_8_R3.Entities;
+package max.hubbard.bettershops.Versions.v1_9_R1.Entities;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_9_R1.*;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEndermite;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_9_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftEndermite;
+import org.bukkit.craftbukkit.v1_9_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.Endermite;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
