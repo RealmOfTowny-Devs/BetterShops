@@ -15,6 +15,7 @@ import max.hubbard.bettershops.Shops.Shop;
 import max.hubbard.bettershops.Shops.Types.Holo.ShopHologram;
 import max.hubbard.bettershops.TradeManager;
 import max.hubbard.bettershops.Utils.ItemUtils;
+import max.hubbard.bettershops.Utils.SoundManager;
 import max.hubbard.bettershops.Utils.Stocks;
 import max.hubbard.bettershops.Utils.Trade;
 import org.bukkit.Bukkit;
@@ -106,7 +107,7 @@ public class AddItemListener implements Listener {
                                                     ShopItem sItem = shop.createShopItem(item, s, page, false);
 
                                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                                                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
 
 
                                                     int am = ite.getAmount() - 1;
@@ -170,7 +171,7 @@ public class AddItemListener implements Listener {
                                                     } else {
                                                         shop.getMenu(MenuType.OWNER_BUYING).draw(p, shopItem.getPage());
                                                     }
-                                                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
                                                 }
                                             } else {
                                                 p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "Blacklist"));
@@ -197,7 +198,7 @@ public class AddItemListener implements Listener {
                                                     ShopItem sItem = shop.createShopItem(item, s, page, true);
 
                                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                                                    p.playSound(p.getLocation(), Sound.NOTE_PLING, 400, 400);
+                                                    p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
 
                                                     if (shop.isServerShop()) {
                                                         shop.getMenu(MenuType.MAIN_SELLING).draw(p, page);

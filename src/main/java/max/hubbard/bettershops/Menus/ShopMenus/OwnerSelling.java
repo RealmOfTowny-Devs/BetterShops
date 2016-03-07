@@ -10,9 +10,9 @@ import max.hubbard.bettershops.Shops.Items.ShopItem;
 import max.hubbard.bettershops.Shops.Shop;
 import max.hubbard.bettershops.Utils.AnvilManager;
 import max.hubbard.bettershops.Utils.MaterialSearch;
+import max.hubbard.bettershops.Utils.SoundManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -222,7 +222,7 @@ public class OwnerSelling implements ShopMenu {
                         if (m.size() > 0) {
                             shop.createShopItem(new ItemStack(m.get(0)), shop.getNextSlotForPage(shop.getNextAvailablePage(true), true), shop.getNextAvailablePage(true), true);
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "AddItem"));
-                            p.playSound(p.getLocation(), Sound.NOTE_PLING, 400, 400);
+                            p.playSound(p.getLocation(), SoundManager.getSound("BLOCK_NOTE_PLING", "NOTE_PLING"), 400, 400);
                         } else {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "InvalidItem"));
                         }
