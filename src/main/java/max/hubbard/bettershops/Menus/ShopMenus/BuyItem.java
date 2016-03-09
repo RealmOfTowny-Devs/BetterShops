@@ -188,7 +188,7 @@ public class BuyItem implements ShopMenu {
         }
 
         if (c) {
-            if (Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
+            if (Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId())) && Core.getEconomy().hasAccount(shop.getOwner())) {
                 if (shopItem.getStock() > 0 && shopItem.getAmount() <= shopItem.getStock() && Core.getEconomy().getBalance(Bukkit.getOfflinePlayer(p.getUniqueId())) >= shopItem.getPrice() || shopItem.isInfinite() && Core.getEconomy().getBalance(Bukkit.getOfflinePlayer(p.getUniqueId())) >= shopItem.getPrice()) {
                     inv.setItem(18, buy);
                     inv.setItem(19, buy);
