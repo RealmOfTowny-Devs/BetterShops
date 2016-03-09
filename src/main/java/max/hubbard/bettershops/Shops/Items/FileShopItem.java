@@ -150,6 +150,8 @@ public class FileShopItem implements ShopItem {
             } else if (((FileShop) shop).config.isString("Items." + id + ".ItemStack")) {
                 item = ItemUtils.fromString(((FileShop) shop).config.getString("Items." + id + ".ItemStack"));
             }
+            if (Material.AIR.equals(item.getType())) return null; // returns null if shop id is not listed in Items. Fix the neverending holoicons issues.
+
             int page = (Integer) shop.getObject("Items." + id + ".Page");
             int slot = (Integer) shop.getObject("Items." + id + ".Slot");
             boolean sell = (Boolean) shop.getObject("Items." + id + ".Selling");

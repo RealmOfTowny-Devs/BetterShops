@@ -337,10 +337,17 @@ public class SQLShop implements Shop {
         } finally {
 
             if (useIcon()) {
+                int iconId = (int) getObject("Icon");
+
                 if (items.size() == 0) {
                     setObject("Icon", -1);
                 } else {
-                    HologramManager.addIcon(new ShopIcon(SQLShopItem.loadShopItem(this, (int) getObject("Icon"))));
+                    try {
+                        HologramManager.addIcon(new ShopIcon(SQLShopItem.loadShopItem(this, iconId)));
+                    } catch (Exception ex) {
+                        setObject("Icon", -1);
+                    }
+
                 }
             }
 
