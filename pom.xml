@@ -146,7 +146,7 @@
                         <phase>package</phase>
                         <configuration>
                             <tasks>                                                                              
-                                <copy file="target/BetterShops-${project.version}.jar" tofile="target/BetterShops.jar"/>
+                                <move file="target/BetterShops-${project.version}.jar" tofile="target/BetterShops.jar"/>
                             </tasks>
                         </configuration>
                         <goals>
