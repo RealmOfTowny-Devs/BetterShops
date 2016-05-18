@@ -41,11 +41,11 @@ public class SignChanger {
 
         Location loc = sign.getLocation();
 
-        // PacketPlayOutUpdateSign is no longer in v1_9_R2, need to fix this
-        PacketPlayOutUpdateSign packet = new PacketPlayOytUpdateSign(w, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), components);
-
-
-        ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
+        String[] signLines = {};
+        for (int i=0; i<components.length; i++) {
+            signLines[i] = components[i].getText();
+        }
+        p.sendSignChange(loc, signLines);
 
 
     }
