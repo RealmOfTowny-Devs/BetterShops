@@ -63,6 +63,8 @@ public class Core extends JavaPlugin {
     private static Connection c;
     private static Database db;
 
+    public static void main(String[] args) {}
+
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §eSaving Shops..");
@@ -153,7 +155,7 @@ public class Core extends JavaPlugin {
                     boolean c = false;
 
                     if (v.contains("Spigot")) {
-                        if (version.equals("v1_8_R1") || version.equals("v1_8_R2") || version.equals("v1_8_R3") || version.equals("v1_9_R1")) {
+                        if (version.equals("v1_8_R1") || version.equals("v1_8_R2") || version.equals("v1_8_R3") || version.equals("v1_9_R1") || version.equals("v1_9_R2")) {
                             c = true;
                         }
                     }

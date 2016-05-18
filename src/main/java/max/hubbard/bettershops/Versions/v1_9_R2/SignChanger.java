@@ -24,7 +24,7 @@ import org.bukkit.entity.Player;
  * are the sole property of Max. Distribution, reproduction, taking snippets, or
  * claiming any contents as your own will break the terms of the license, and void any
  * agreements with you, the third party.
- * ************************************************************************
+ * ***************************************PacketPlayOutUpdateSign*********************************
  */
 public class SignChanger {
 
@@ -41,10 +41,12 @@ public class SignChanger {
 
         Location loc = sign.getLocation();
 
-        PacketPlayOutUpdateSign packet = new PacketPlayOutUpdateSign(w, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), components);
+        // PacketPlayOutUpdateSign is no longer in v1_9_R2, need to fix this
+        PacketPlayOutUpdateSign packet = new PacketPlayOytUpdateSign(w, new BlockPosition(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()), components);
 
 
         ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
+
 
     }
 }
