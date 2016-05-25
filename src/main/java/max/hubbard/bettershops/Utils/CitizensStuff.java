@@ -27,6 +27,7 @@ public class CitizensStuff implements Listener {
         if (Core.useCitizens()) {
             if (CitizensAPI.getNPCRegistry().isNPC(entity)) {
                 net.citizensnpcs.api.npc.NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
+                npc.despawn();
                 npc.destroy();
                 CitizensAPI.getNPCRegistry().deregister(npc);
             }
