@@ -24,6 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * ***********************************************************************
@@ -120,7 +121,7 @@ public class CreateShop implements Listener {
                                         e.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
                                         if (e.getBlock().getState() instanceof Sign) {
-                                            org.bukkit.block.Sign s = (org.bukkit.block.Sign) e.getBlock().getState();
+                                            final org.bukkit.block.Sign s = (org.bukkit.block.Sign) e.getBlock().getState();
 
                                             s.setLine(0, Language.getString("MainGUI", "SignLine1"));
                                             s.setLine(1, Language.getString("MainGUI", "SignLine2"));
@@ -142,7 +143,14 @@ public class CreateShop implements Listener {
                                                     e.printStackTrace();
                                                 }
                                             }
-                                            s.update();
+                                            new BukkitRunnable() {
+
+                                                @Override
+                                                public void run() {
+                                                    s.update();
+                                                }
+
+                                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                                         }
 
                                         if (Core.isAboveEight() && (boolean) Config.getObject("Titles") && Core.getTitleManager() != null) {
