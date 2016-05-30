@@ -174,7 +174,7 @@ public class NPCShop implements ShopsNPC {
                 for (String l : lore) {
                     if (l.contains(Language.getString("NPCs", "DyeColor"))) {
                         String obj = l.substring(Language.getString("NPCs", "DyeColor").length() + 3);
-                        Enum en = (Enum) DyeColor.valueOf(obj);
+                        Enum en = DyeColor.valueOf(obj);
                         if (e == EntityType.SHEEP) {
                             entity.getClass().getMethod("setColor", DyeColor.class).invoke(entity, en);
                         }
@@ -299,7 +299,7 @@ public class NPCShop implements ShopsNPC {
 
 
                     if (b.getState() instanceof Sign) {
-                        Sign s = (Sign) b.getState();
+                        final Sign s = (Sign) b.getState();
 
                         org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
 
@@ -313,7 +313,14 @@ public class NPCShop implements ShopsNPC {
 
                         s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
-                        s.update();
+                        new BukkitRunnable() {
+
+                            @Override
+                            public void run() {
+                                s.update();
+                            }
+
+                        }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                     }
                 }
             }

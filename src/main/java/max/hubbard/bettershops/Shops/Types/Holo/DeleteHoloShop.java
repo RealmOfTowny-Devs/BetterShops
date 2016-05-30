@@ -32,7 +32,7 @@ public class DeleteHoloShop {
 
         if (holo != null && holo.getHologram() != null) {
             holo.getHologram().delete();
-            HologramDatabase.deleteHologram(((NamedHologram) holo.getHologram()).getName());
+            HologramDatabase.deleteHologram(holo.getHologram().getName());
             HologramDatabase.trySaveToDisk();
 
             final Shop shop = holo.getShop();
@@ -86,7 +86,7 @@ public class DeleteHoloShop {
 
 
                         if (b.getState() instanceof Sign) {
-                            Sign s = (Sign) b.getState();
+                            final Sign s = (Sign) b.getState();
 
                             org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
 
@@ -103,7 +103,14 @@ public class DeleteHoloShop {
                             }
                             s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
-                            s.update();
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    s.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
 
                             ShopManager.signLocs.values().remove(shop);
                             ShopManager.signLocs.put(s.getLocation(), shop);
@@ -129,7 +136,7 @@ public class DeleteHoloShop {
 
         if (holo != null && holo.getHologram() != null) {
             holo.getHologram().delete();
-            HologramDatabase.deleteHologram(((NamedHologram) holo.getHologram()).getName());
+            HologramDatabase.deleteHologram(holo.getHologram().getName());
             HologramDatabase.trySaveToDisk();
 
             final Shop shop = holo.getShop();
@@ -182,7 +189,7 @@ public class DeleteHoloShop {
 
 
                         if (b.getState() instanceof Sign) {
-                            Sign s = (Sign) b.getState();
+                            final Sign s = (Sign) b.getState();
 
                             org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
 
@@ -199,7 +206,14 @@ public class DeleteHoloShop {
                             }
                             s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
-                            s.update();
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    s.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
 
                             ShopManager.signLocs.values().remove(shop);
                             ShopManager.signLocs.put(s.getLocation(), shop);

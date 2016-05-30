@@ -5,6 +5,7 @@ import max.hubbard.bettershops.Shops.Items.ShopItem;
 import max.hubbard.bettershops.Shops.Shop;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Sign;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Date;
 
@@ -72,12 +73,19 @@ public class TimingsManager {
                                     if (!shop.isNPCShop() && !shop.isHoloShop()) {
 
                                         if (shop.getSign() != null) {
-                                            Sign sign = shop.getSign();
+                                            final Sign sign = shop.getSign();
                                             sign.setLine(0, "");
                                             sign.setLine(1, "");
                                             sign.setLine(2, "");
                                             sign.setLine(3, "");
-                                            sign.update();
+                                            new BukkitRunnable() {
+
+                                                @Override
+                                                public void run() {
+                                                    sign.update();
+                                                }
+
+                                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                                         }
                                     }
                                     ShopDeleter.deleteShopExternally(shop);

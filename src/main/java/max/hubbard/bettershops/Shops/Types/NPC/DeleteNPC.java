@@ -13,6 +13,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * ***********************************************************************
@@ -107,7 +108,7 @@ public class DeleteNPC {
 
 
                     if (b.getState() instanceof Sign) {
-                        Sign s = (Sign) b.getState();
+                        final Sign s = (Sign) b.getState();
 
                         org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
 
@@ -124,7 +125,14 @@ public class DeleteNPC {
                         }
                         s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
-                        s.update();
+                        new BukkitRunnable() {
+
+                            @Override
+                            public void run() {
+                                s.update();
+                            }
+
+                        }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                         ShopManager.signLocs.values().remove(shop);
                         ShopManager.signLocs.put(s.getLocation(), shop);
                     }

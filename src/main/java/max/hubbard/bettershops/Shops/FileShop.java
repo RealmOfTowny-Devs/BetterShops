@@ -30,6 +30,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
@@ -665,7 +666,15 @@ public class FileShop implements Shop {
                             } else {
                                 sign.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                             }
-                            sign.update();
+                            final Sign finalSign = sign;
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    finalSign.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                             ShopManager.signLocs.put(sign.getLocation(), this);
                             return;
                         }
@@ -684,7 +693,15 @@ public class FileShop implements Shop {
                             } else {
                                 sign.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                             }
-                            sign.update();
+                            final Sign finalSign = sign;
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    finalSign.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                             ShopManager.signLocs.put(sign.getLocation(), this);
                             return;
                         }
@@ -702,7 +719,15 @@ public class FileShop implements Shop {
                             } else {
                                 sign.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                             }
-                            sign.update();
+                            final Sign finalSign = sign;
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    finalSign.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                             ShopManager.signLocs.put(sign.getLocation(), this);
                         }
                     }
@@ -719,7 +744,15 @@ public class FileShop implements Shop {
                             } else {
                                 sign.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                             }
-                            sign.update();
+                            final Sign finalSign = sign;
+                            new BukkitRunnable() {
+
+                                @Override
+                                public void run() {
+                                    finalSign.update();
+                                }
+
+                            }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                             ShopManager.signLocs.put(sign.getLocation(), this);
                         }
                     }

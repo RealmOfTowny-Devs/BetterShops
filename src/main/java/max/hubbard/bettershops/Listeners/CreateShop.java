@@ -335,7 +335,7 @@ public class CreateShop implements Listener {
 
 
                     if (b.getState() instanceof Sign) {
-                        Sign s = (Sign) b.getState();
+                        final Sign s = (Sign) b.getState();
 
                         org.bukkit.material.Sign sign = (org.bukkit.material.Sign) s.getData();
 
@@ -348,8 +348,14 @@ public class CreateShop implements Listener {
                         s.setLine(2, Language.getString("MainGUI", "SignLine3Closed"));
                         s.setLine(3, Language.getString("MainGUI", "SignLine4"));
 
-                        s.update();
-                    }
+                        new BukkitRunnable() {
+
+                            @Override
+                            public void run() {
+                                s.update();
+                            }
+
+                        }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));                    }
                 }
 
                 Shop s = ShopManager.fromLocation(loc);
