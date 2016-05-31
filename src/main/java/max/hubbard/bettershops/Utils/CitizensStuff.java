@@ -8,9 +8,11 @@ import max.hubbard.bettershops.Shops.Types.NPC.EntityInfo;
 import max.hubbard.bettershops.Shops.Types.NPC.NPCManager;
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.event.NPCSpawnEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * ***********************************************************************
@@ -26,9 +28,16 @@ public class CitizensStuff implements Listener {
     public static void deleteCitizensNPC(LivingEntity entity) {
         if (Core.useCitizens()) {
             if (CitizensAPI.getNPCRegistry().isNPC(entity)) {
-                net.citizensnpcs.api.npc.NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
-                npc.despawn();
-                npc.destroy();
+                final net.citizensnpcs.api.npc.NPC npc = CitizensAPI.getNPCRegistry().getNPC(entity);
+                new BukkitRunnable() {
+
+                    @Override
+                    public void run() {
+                        npc.despawn();
+                        npc.destroy();
+                    }
+
+                }.runTask(Bukkit.getPluginManager().getPlugin("BetterShops"));
                 CitizensAPI.getNPCRegistry().deregister(npc);
             }
         }
