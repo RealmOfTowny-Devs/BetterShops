@@ -43,7 +43,7 @@ public class GuardianNPC extends EntityGuardian {
     }
 
     @Override
-    public EntityLiving df() {
+    public EntityLiving dj() {
         return null;
     }
 

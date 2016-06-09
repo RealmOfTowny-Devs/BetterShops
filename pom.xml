@@ -5,7 +5,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.9.4-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.10-R0.1-SNAPSHOT</spigot.version>
         <build.number>SNAPSHOT</build.number>
     </properties>
 
@@ -77,6 +77,13 @@
             <groupId>org.bukkit</groupId>
             <artifactId>spigot-19</artifactId>
             <version>1.9</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>spigot-194</artifactId>
+            <version>1.9.4</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
