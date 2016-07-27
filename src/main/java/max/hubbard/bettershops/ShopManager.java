@@ -149,44 +149,48 @@ public class ShopManager {
                     for (File file1 : f.listFiles()) {
 
                         if (file1.getName().contains(".yml")) {
-                            UUID id = UUID.fromString(f.getName());
+                            if (file1.length() == 0) {
+                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §cCorrupted shop in file: §4" + file1.getName());
+                            } else {
+                                UUID id = UUID.fromString(f.getName());
 
-                            YamlConfiguration config = YamlConfiguration.loadConfiguration(file1);
+                                YamlConfiguration config = YamlConfiguration.loadConfiguration(file1);
 
-                            limit.put(id, f.listFiles().length);
+                                limit.put(id, f.listFiles().length);
 
-                            Shop shop = new FileShop(config, file1, Bukkit.getOfflinePlayer(id));
+                                Shop shop = new FileShop(config, file1, Bukkit.getOfflinePlayer(id));
 
-                            shops.add(shop);
-                            locs.put(shop.getLocation(), shop);
-                            names.put(shop.getName(), shop);
-                            if (!worlds.contains(shop.getLocation().getWorld()))
-                                worlds.add(shop.getLocation().getWorld());
+                                shops.add(shop);
+                                locs.put(shop.getLocation(), shop);
+                                names.put(shop.getName(), shop);
+                                if (!worlds.contains(shop.getLocation().getWorld()))
+                                    worlds.add(shop.getLocation().getWorld());
 
-                            shops1.add(shop);
-                            ss++;
+                                shops1.add(shop);
+                                ss++;
 
-                            i++;
-                            if (i == (total * .10)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a10%");
-                            }
-                            if (i == (total * .33)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a33%");
-                            }
-                            if (i == (total * .66)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a66%");
-                            }
-                            if (i == (total * .5)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a50%");
-                            }
-                            if (i == (total * .25)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a25%");
-                            }
-                            if (i == (total * .75)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a75%");
-                            }
-                            if (i == (total * .9)) {
-                                Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a90%");
+                                i++;
+                                if (i == (total * .10)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a10%");
+                                }
+                                if (i == (total * .33)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a33%");
+                                }
+                                if (i == (total * .66)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a66%");
+                                }
+                                if (i == (total * .5)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a50%");
+                                }
+                                if (i == (total * .25)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a25%");
+                                }
+                                if (i == (total * .75)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a75%");
+                                }
+                                if (i == (total * .9)) {
+                                    Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §a90%");
+                                }
                             }
 
                         }
