@@ -1,9 +1,9 @@
-package max.hubbard.bettershops.Versions.v1_9_R2;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
-import net.minecraft.server.v1_9_R2.BiomeBase;
-import net.minecraft.server.v1_9_R2.BiomeBase.BiomeMeta;
-import net.minecraft.server.v1_9_R2.EntityInsentient;
-import net.minecraft.server.v1_9_R2.EntityTypes;
+import net.minecraft.server.v1_11_R1.BiomeBase;
+import net.minecraft.server.v1_11_R1.BiomeBase.BiomeMeta;
+import net.minecraft.server.v1_11_R1.EntityInsentient;
+import net.minecraft.server.v1_11_R1.EntityTypes;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

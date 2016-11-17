@@ -5,7 +5,6 @@ import max.hubbard.bettershops.Commands.BSCommand;
 import max.hubbard.bettershops.Configurations.Blacklist;
 import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Configurations.ConfigMenu.ConfigMenuListener;
-import max.hubbard.bettershops.Configurations.ConfigMenu.NPCChooser;
 import max.hubbard.bettershops.Configurations.Language;
 import max.hubbard.bettershops.Configurations.LanguageMenu.GUIMessageListener;
 import max.hubbard.bettershops.Configurations.LanguageMenu.LanguageInventory;
@@ -110,7 +109,6 @@ public class Core extends JavaPlugin {
                 Bukkit.getPluginManager().registerEvents(new Delete(), this);
                 Bukkit.getPluginManager().registerEvents(new ShopMaintainer(), this);
                 Bukkit.getPluginManager().registerEvents(new ConfigMenuListener(), this);
-                Bukkit.getPluginManager().registerEvents(new NPCChooser(), this);
                 Bukkit.getPluginManager().registerEvents(new GUIMessageListener(), this);
                 Bukkit.getPluginManager().registerEvents(new LanguageInventory(), this);
                 Bukkit.getPluginManager().registerEvents(new DeleteSign(), this);
@@ -147,7 +145,7 @@ public class Core extends JavaPlugin {
                             gui = (AnvilGUI) clazz.getConstructor().newInstance(); // Set our handler
                         }
                     } else {
-                        Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §cCould not find support for this CraftBukkit version. Currently Supports CB version 1.7.9 RO.3 - Spigot 1.10.R1, You are using §d" + version + "§c. Plugin Disabling!");
+                        Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §cCould not find support for this CraftBukkit version. Currently Supports CB version Spigot 1.10+, You are using §d" + version + "§c. Plugin Disabling!");
                         this.setEnabled(false);
                         return;
                     }
@@ -155,7 +153,7 @@ public class Core extends JavaPlugin {
                     boolean c = false;
 
                     if (v.contains("Spigot")) {
-                        if (version.equals("v1_8_R1") || version.equals("v1_8_R2") || version.equals("v1_8_R3") || version.equals("v1_9_R1") || version.equals("v1_9_R2") || version.equals("v1_10_R1")) {
+                        if (version.equals("v1_11_R1") || version.equals("v1_10_R1")) {
                             c = true;
                         }
                     }

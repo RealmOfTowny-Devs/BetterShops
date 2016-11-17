@@ -1,4 +1,4 @@
-package max.hubbard.bettershops.Versions.v1_9_R2;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
 /**
  * ***********************************************************************
@@ -10,11 +10,11 @@ package max.hubbard.bettershops.Versions.v1_9_R2;
  * ************************************************************************
  */
 
-import net.minecraft.server.v1_9_R2.*;
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_9_R2.block.CraftSign;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.block.CraftSign;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**

@@ -1,7 +1,6 @@
-package max.hubbard.bettershops.Versions.v1_8_R3;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
-import max.hubbard.bettershops.Versions.v1_8_R3.Entities.*;
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_11_R1.*;
 
 /**
  * ***********************************************************************
@@ -17,7 +16,7 @@ public class Register {
     public static void registerNPCs(){
         NMSUtil nms = new NMSUtil();
 
-        nms.registerEntity("Bat", 65, EntityBat.class, BatNPC.class);
+        /*nms.registerEntity("Bat", 65, EntityBat.class, BatNPC.class);
         nms.registerEntity("Blaze", 61, EntityBlaze.class, BlazeNPC.class);
         nms.registerEntity("CaveSpider", 59, EntityCaveSpider.class, CaveSpiderNPC.class);
         nms.registerEntity("Chicken", 93, EntityChicken.class, ChickenNPC.class);
@@ -48,13 +47,13 @@ public class Register {
         nms.registerEntity("Witch", 66, EntityWitch.class, WitchNPC.class);
         nms.registerEntity("WitherBoss", 64, EntityWither.class, WitherNPC.class);
         nms.registerEntity("Wolf", 95, EntityWolf.class, WolfNPC.class);
-        nms.registerEntity("Zombie", 54, EntityZombie.class, ZombieNPC.class);
+        nms.registerEntity("Zombie", 54, EntityZombie.class, ZombieNPC.class);*/
     }
 
     public static void unregisterNPCs(){
         NMSUtil nms = new NMSUtil();
 
-        nms.registerEntity("Bat", 65, BatNPC.class, EntityBat.class);
+        /*nms.registerEntity("Bat", 65, BatNPC.class, EntityBat.class);
         nms.registerEntity("Blaze", 61, BlazeNPC.class, EntityBlaze.class);
         nms.registerEntity("CaveSpider", 59, CaveSpiderNPC.class, EntityCaveSpider.class);
         nms.registerEntity("Chicken", 93, ChickenNPC.class, EntityChicken.class);
@@ -85,6 +84,6 @@ public class Register {
         nms.registerEntity("Witch", 66, WitchNPC.class, EntityWitch.class);
         nms.registerEntity("WitherBoss", 64, WitherNPC.class, EntityWither.class);
         nms.registerEntity("Wolf", 95, WolfNPC.class, EntityWolf.class);
-        nms.registerEntity("Zombie", 54, ZombieNPC.class, EntityZombie.class);
+        nms.registerEntity("Zombie", 54, ZombieNPC.class, EntityZombie.class);*/
     }
 }

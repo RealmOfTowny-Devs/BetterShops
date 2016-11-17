@@ -1,9 +1,9 @@
-package max.hubbard.bettershops.Versions.v1_8_R3;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
-import net.minecraft.server.v1_8_R3.ChatComponentText;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
+import net.minecraft.server.v1_11_R1.ChatComponentText;
+import net.minecraft.server.v1_11_R1.PacketPlayOutTitle;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 /**

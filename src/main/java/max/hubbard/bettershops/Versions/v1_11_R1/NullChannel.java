@@ -1,4 +1,4 @@
-package max.hubbard.bettershops.Versions.v1_9_R2;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
 
 import io.netty.channel.*;

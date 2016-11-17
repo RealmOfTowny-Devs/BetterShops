@@ -1,9 +1,9 @@
-package max.hubbard.bettershops.Versions.v1_9_R2;
+package max.hubbard.bettershops.Versions.v1_11_R1;
 
 import max.hubbard.bettershops.Core;
-import net.minecraft.server.v1_9_R2.*;
+import net.minecraft.server.v1_11_R1.*;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
