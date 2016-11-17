@@ -145,7 +145,7 @@ public class Core extends JavaPlugin {
                             gui = (AnvilGUI) clazz.getConstructor().newInstance(); // Set our handler
                         }
                     } else {
-                        Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §cCould not find support for this CraftBukkit version. Currently Supports CB version Spigot 1.10+, You are using §d" + version + "§c. Plugin Disabling!");
+                        Bukkit.getConsoleSender().sendMessage("§bBetterShops§7 - §cCould not find support for this CraftBukkit version. Currently Supports CB version Spigot 1.9+, You are using §d" + version + "§c. Plugin Disabling!");
                         this.setEnabled(false);
                         return;
                     }
@@ -153,7 +153,7 @@ public class Core extends JavaPlugin {
                     boolean c = false;
 
                     if (v.contains("Spigot")) {
-                        if (version.equals("v1_11_R1") || version.equals("v1_10_R1")) {
+                        if (version.equals("v1_9_R2") | version.equals("v1_11_R1") || version.equals("v1_10_R1")) {
                             c = true;
                         }
                     }
