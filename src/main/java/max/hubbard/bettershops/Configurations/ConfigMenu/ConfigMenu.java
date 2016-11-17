@@ -61,13 +61,6 @@ public class ConfigMenu {
         backMeta.setDisplayName(Language.getString("MainGUI", "PreviousPage"));
         back.setItemMeta(backMeta);
 
-        ItemStack NPCChoose = new ItemStack(Material.MONSTER_EGG);
-        ItemMeta NPCChooseMeta = NPCChoose.getItemMeta();
-        NPCChooseMeta.setDisplayName("§eChoose NPCs");
-        NPCChoose.setItemMeta(NPCChooseMeta);
-
-        inv.setItem(1, NPCChoose);
-
         if (page > 1) {
             inv.setItem(0, back);
         }

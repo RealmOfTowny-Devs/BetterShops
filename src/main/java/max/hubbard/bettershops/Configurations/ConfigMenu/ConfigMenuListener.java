@@ -38,9 +38,7 @@ public class ConfigMenuListener implements Listener {
                 if (e.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) {
                     return;
                 }
-                if (e.getCurrentItem().getItemMeta().getDisplayName().contains("§eChoose NPCs")) {
-                    NPCChooser.openNPCConfigChooser((Player) e.getWhoClicked());
-                } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains(Language.getString("MainGUI", "NextPage"))) {
+                if (e.getCurrentItem().getItemMeta().getDisplayName().contains(Language.getString("MainGUI", "NextPage"))) {
                     ConfigMenu.openConfigMenu(e.getInventory(), (Player) e.getWhoClicked(), page + 1);
                 } else if (e.getCurrentItem().getItemMeta().getDisplayName().contains(Language.getString("MainGUI", "PreviousPage"))) {
                     ConfigMenu.openConfigMenu(e.getInventory(), (Player) e.getWhoClicked(), page - 1);

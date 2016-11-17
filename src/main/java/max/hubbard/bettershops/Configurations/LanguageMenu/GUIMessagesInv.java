@@ -85,11 +85,6 @@ public class GUIMessagesInv {
         chatMeta.setDisplayName("§eChat Messages");
         chat.setItemMeta(chatMeta);
 
-        ItemStack NPCs = new ItemStack(Material.MONSTER_EGG);
-        ItemMeta NPCsMeta = NPCs.getItemMeta();
-        NPCsMeta.setDisplayName("§eNPC Messages");
-        NPCs.setItemMeta(NPCsMeta);
-
         ItemStack LiveEco = new ItemStack(Material.EMERALD_ORE);
         ItemMeta LiveEcoMeta = LiveEco.getItemMeta();
         LiveEcoMeta.setDisplayName("§eLive Economy Messages");
@@ -114,7 +109,6 @@ public class GUIMessagesInv {
         inv.setItem(16, shopSettings);
         inv.setItem(19, history);
         inv.setItem(20, chat);
-        inv.setItem(21, NPCs);
         inv.setItem(22, LiveEco);
         inv.setItem(23, Trades);
         inv.setItem(24, Blacklist);

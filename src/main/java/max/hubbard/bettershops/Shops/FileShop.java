@@ -342,8 +342,6 @@ public class FileShop implements Shop {
         menus.put(MenuType.KEEPER_ITEM_MANAGER, new KeeperItemManager(this));
         menus.put(MenuType.BUY_ITEM, new BuyItem(this));
         menus.put(MenuType.SELL_ITEM, new SellItem(this));
-        menus.put(MenuType.NPC_CHOOSE, new NPCChoose(this));
-        menus.put(MenuType.NPC_CONFIGURE, new NPCConfigure(this));
         menus.put(MenuType.REARRANGE, new Rearrange(this));
         menus.put(MenuType.AMOUNT_CHOOSER, new AmountChooser(this));
         menus.put(MenuType.CART, new Cart(this));
@@ -385,10 +383,6 @@ public class FileShop implements Shop {
                 return new BuyItem(this);
             case SELL_ITEM:
                 return new SellItem(this);
-            case NPC_CHOOSE:
-                return new NPCChoose(this);
-            case NPC_CONFIGURE:
-                return new NPCConfigure(this);
             case REARRANGE:
                 return new Rearrange(this);
             case AMOUNT_CHOOSER:

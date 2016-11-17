@@ -12,7 +12,6 @@ import max.hubbard.bettershops.Shops.Items.Actions.ShopItemStack;
 import max.hubbard.bettershops.Shops.Shop;
 import max.hubbard.bettershops.Shops.Types.Holo.CreateHologram;
 import max.hubbard.bettershops.Shops.Types.Holo.DeleteHoloShop;
-import max.hubbard.bettershops.Shops.Types.NPC.DeleteNPC;
 import max.hubbard.bettershops.Utils.AnvilManager;
 import org.bukkit.Bukkit;
 import org.bukkit.DyeColor;
@@ -204,38 +203,6 @@ public class ShopSettings implements ShopMenu {
             }
         });
 
-        ItemStack npc = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 14);
-        ItemMeta npcMeta = npc.getItemMeta();
-        if (shop.isNPCShop() || shop.getNPCShop() != null) {
-            npc = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 5);
-            npcMeta.setDisplayName(Language.getString("ShopSettings", "NPCShopOn"));
-        } else {
-            npcMeta.setDisplayName(Language.getString("ShopSettings", "NPCShopOff"));
-        }
-        npcMeta.setLore(Arrays.asList(Language.getString("ShopSettings", "Warning"),
-                Language.getString("ShopSettings", "DeletedChest"),
-                " ",
-                Language.getString("ShopSettings", "NPCLore")));
-        npc.setItemMeta(npcMeta);
-        ClickableItem npcClick = new ClickableItem(new ShopItemStack(npc), inv, p);
-        npcClick.addLeftClickAction(new LeftClickAction() {
-            @Override
-            public void onAction(InventoryClickEvent e) {
-
-                if (shop.isHoloShop()) {
-                    DeleteHoloShop.deleteHologramShop(shop.getHolographicShop());
-
-                }
-                if (shop.isNPCShop()) {
-                    DeleteNPC.deleteNPC(shop.getNPCShop());
-                    shop.setObject("NPC",false);
-                    draw(p,page);
-                } else {
-                    shop.getMenu(MenuType.NPC_CHOOSE).draw(p, page, obj);
-                }
-
-            }
-        });
 
         ItemStack holo = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 14);
         ItemMeta holoMeta = holo.getItemMeta();
@@ -254,10 +221,6 @@ public class ShopSettings implements ShopMenu {
         holoClick.addLeftClickAction(new LeftClickAction() {
             @Override
             public void onAction(InventoryClickEvent e) {
-
-                if (shop.isNPCShop()) {
-                    DeleteNPC.deleteNPC(shop.getNPCShop());
-                }
 
                 if (shop.isHoloShop()) {
                     DeleteHoloShop.deleteHologramShop(shop.getHolographicShop());
@@ -290,7 +253,7 @@ public class ShopSettings implements ShopMenu {
         });
 
         for (int i = 0; i < DyeColor.values().length; i++) {
-            final DyeColor c = DyeColor.getByData((byte) i);
+            final DyeColor c = DyeColor.getByWoolData((byte) i);
 
             ItemStack ite = new ItemStack(Material.STAINED_GLASS_PANE, 1, c.getDyeData());
             ItemMeta m1 = ite.getItemMeta();
@@ -319,9 +282,6 @@ public class ShopSettings implements ShopMenu {
             inv.setItem(8, blacklist);
         if (Permissions.hasUsePerm(p)) {
             inv.setItem(inv.firstEmpty(), ownuse);
-        }
-        if ((boolean) Config.getObject("EnableNPC") && Permissions.hasNPCPerm(p)) {
-            inv.setItem(inv.firstEmpty(), npc);
         }
         if (Core.useHolograms() && (boolean) Config.getObject("HoloShops") && Permissions.hasHoloPerm(p)) {
             inv.setItem(inv.firstEmpty(), holo);
