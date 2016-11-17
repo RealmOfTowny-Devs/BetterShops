@@ -3,6 +3,7 @@ package max.hubbard.bettershops.Listeners;
 import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Configurations.Language;
 import max.hubbard.bettershops.Configurations.Permissions;
+import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.Menus.MenuType;
 import max.hubbard.bettershops.ShopManager;
 import max.hubbard.bettershops.Shops.Items.Actions.ClickableItem;
@@ -141,8 +142,12 @@ public class Opener implements Listener {
                         public void run() {
                             if (shop.getOwner() != null) {
                                 if (!shop.getBlacklist().contains(p)) {
-                                    ClickableItem.clearPlayer(p);
-                                    open(p, shop);
+                                    if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId())) || !Core.getEconomy().hasAccount(shop.getOwner())) {
+                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                                    } else {
+                                        ClickableItem.clearPlayer(p);
+                                        open(p, shop);
+                                    }
 
                                 } else {
                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NotAllowed"));
@@ -159,7 +164,10 @@ public class Opener implements Listener {
 
     public static void open(Player p, Shop shop) {
         if (shop.isServerShop() || !shop.getOwner().getUniqueId().toString().equals(p.getUniqueId().toString())) {
-
+            if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
+                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                return;
+            }
             if (!shop.getOwner().getUniqueId().toString().equals(p.getUniqueId().toString()) && !shop.isOpen()) {
                 if (!Permissions.hasEditPerm(p, shop)) {
 

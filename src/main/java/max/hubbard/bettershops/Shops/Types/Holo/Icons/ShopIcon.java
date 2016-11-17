@@ -1,7 +1,9 @@
 package max.hubbard.bettershops.Shops.Types.Holo.Icons;
 
+import max.hubbard.bettershops.Configurations.Language;
 import com.gmail.filoghost.holographicdisplays.api.handler.TouchHandler;
 import com.gmail.filoghost.holographicdisplays.object.NamedHologram;
+import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.Menus.MenuType;
 import max.hubbard.bettershops.Shops.Items.ShopItem;
 import max.hubbard.bettershops.Shops.Shop;
@@ -41,7 +43,15 @@ public class ShopIcon {
                             if (player.getUniqueId().toString().equals(shop.getOwner().getUniqueId().toString()) && !shop.isServerShop()) {
                                 shop.getMenu(MenuType.ITEM_MANAGER_SELLING).draw(player,item.getPage(),item);
                             } else {
-                                shop.getMenu(MenuType.SELL_ITEM).draw(player, item.getPage(), item.getItem(), item);
+                                if (!shop.getBlacklist().contains(player)) {
+                                    if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(player.getUniqueId())) || !Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(shop.getOwner().getUniqueId()))) {
+                                        player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                                    } else {
+                                        shop.getMenu(MenuType.SELL_ITEM).draw(player, item.getPage(), item.getItem(), item);
+                                    }
+                                } else {
+                                    player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NotAllowed"));
+                                }
                             }
 
 
@@ -50,7 +60,15 @@ public class ShopIcon {
                             if (player.getUniqueId().toString().equals(shop.getOwner().getUniqueId().toString()) && !shop.isServerShop()) {
                                 shop.getMenu(MenuType.ITEM_MANAGER_BUYING).draw(player,item.getPage(),item);
                             } else {
-                                shop.getMenu(MenuType.BUY_ITEM).draw(player, item.getPage(), item.getItem(), item);
+                                if (!shop.getBlacklist().contains(player)) {
+                                    if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(player.getUniqueId())) || !Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(shop.getOwner().getUniqueId()))) {
+                                        player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                                    } else {
+                                        shop.getMenu(MenuType.BUY_ITEM).draw(player, item.getPage(), item.getItem(), item);
+                                    }
+                                } else {
+                                    player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NotAllowed"));
+                                }
                             }
                         }
                     }

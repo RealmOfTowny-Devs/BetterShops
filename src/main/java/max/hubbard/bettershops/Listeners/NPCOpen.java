@@ -7,6 +7,7 @@ import max.hubbard.bettershops.Shops.Shop;
 import max.hubbard.bettershops.Shops.Types.NPC.EntityInfo;
 import max.hubbard.bettershops.Shops.Types.NPC.NPCShop;
 import max.hubbard.bettershops.Shops.Types.NPC.ShopsNPC;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -61,7 +62,11 @@ public class NPCOpen implements Listener {
                     Player p = e.getPlayer();
 
                     if (!shop.getBlacklist().contains(p)) {
-                        Opener.open(p, shop);
+                        if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
+                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                        } else {
+                            Opener.open(p, shop);
+                        }
                     } else {
                         p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NotAllowed"));
                     }

@@ -187,7 +187,11 @@ public class BSCommand implements CommandExecutor {
                                 }
                                 if (!shop.getBlacklist().contains(p)) {
                                     if (shop.getOwner() != null) {
-                                        Opener.open(p, shop);
+                                        if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
+                                            p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
+                                        } else {
+                                            Opener.open(p, shop);
+                                        }
                                     } else {
                                         p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "FakeShop"));
                                     }
