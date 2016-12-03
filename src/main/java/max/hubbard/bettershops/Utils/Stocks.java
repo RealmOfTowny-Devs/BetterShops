@@ -40,7 +40,7 @@ public class Stocks {
 
                     int left = ite.getStock() - amt;
 
-                    collectAll(ite, shop, p);
+                    addItemsToInventory(ite, p, amt);
                     removeItemsFromInventory(ite, p, shop, left);
 
                     ite.setObject("Stock", left);
