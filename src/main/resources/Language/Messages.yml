@@ -140,6 +140,8 @@ InvalidKeeper: '&cNot a valid player or this player has not logged on to this se
 
 RemovedPlayer: '&aRemoved player.'
 
+RemovedKeeper: '&aRemoved shop keeper.'
+
 CannotAfford: '&cCould Not Afford &d'
 
 CanOnlyBuy: '&cCan only buy &e'
