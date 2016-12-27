@@ -55,11 +55,11 @@ public class ShopDeleter {
             }
         }
         if (shop instanceof FileShop) {
-            ((FileShop) shop).file.delete();
             if (shop.useIcon()) {
                 HologramManager.removeIcon(shop);
                 shop.setObject("Icon", -1);
             }
+            ((FileShop) shop).file.delete();
         } else {
             if (shop.useIcon()) {
                 HologramManager.removeIcon(shop);
