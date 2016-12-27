@@ -55,6 +55,10 @@ public class ShopDeleter {
             }
         }
         if (shop instanceof FileShop) {
+            if (shop.useIcon()) {
+                HologramManager.removeIcon(shop);
+                shop.setObject("Icon", -1);
+            }
             ((FileShop) shop).file.delete();
         } else {
             if (shop.useIcon()) {
