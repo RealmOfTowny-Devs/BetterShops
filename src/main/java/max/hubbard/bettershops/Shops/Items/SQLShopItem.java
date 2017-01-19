@@ -4,10 +4,9 @@ import max.hubbard.bettershops.Configurations.Config;
 import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.Shops.SQLShop;
 import max.hubbard.bettershops.Shops.Shop;
-import max.hubbard.bettershops.Utils.ItemUtils;
 import max.hubbard.bettershops.Utils.SQLUtil;
 import max.hubbard.bettershops.Utils.Timing;
-import org.bukkit.enchantments.Enchantment;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -15,10 +14,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * ***********************************************************************
@@ -121,15 +117,12 @@ public class SQLShopItem implements ShopItem {
                 }
 
                 String enchants = "";
-                if (item.getEnchantments().size() > 0) {
-                    for (Enchantment en : item.getEnchantments().keySet()) {
-                        enchants = enchants + "||BS||" + en.getName() + "-" + item.getEnchantments().get(en);
-                    }
-                }
+                YamlConfiguration itemDef = new YamlConfiguration();
+                itemDef.set("i", this.item);
 
                 statement.executeUpdate("INSERT INTO " + Config.getObject("prefix") + "Items (Shop, Id, Item, DisplayName, Lore, Enchants, Page, Slot, Selling, Stock, Amount, Price, OrigPrice, Infinite, " +
                         "LiveEconomy, PriceChangePercent, DoubleAmount, MinimumPrice, MaximumPrice, AdjustedPrice, SellLimit) VALUES " +
-                        "('" + shop.getName() + "', '" + id + "', '" + ItemUtils.toString(item) + "', '" + displayName + "', '" + l + "', '" + enchants + "', '" + page + "', '" + slot + "', '" + SQLUtil.getBoolValue(sell) + "', '" + 0 + "', " +
+                        "('" + shop.getName() + "', '" + id + "', '" + itemDef.saveToString() + "', '" + displayName + "', '" + l + "', '" + enchants + "', '" + page + "', '" + slot + "', '" + SQLUtil.getBoolValue(sell) + "', '" + 0 + "', " +
                         "'" + 1 + "', '" + Config.getObject("DefaultPrice") + "', '" + Config.getObject("DefaultPrice") + "', '" + 0 + "', '" + 0 + "', '" + priceChangePercent + "', " +
                         "'" + amountToDouble + "', '" + minPrice + "', '" + maxPrice + "', '" + Config.getObject("DefaultPrice") + "', '" + 0 + "');");
 
@@ -153,10 +146,17 @@ public class SQLShopItem implements ShopItem {
                 ResultSet set = statement.executeQuery("SELECT * FROM " + Config.getObject("prefix") + "Items WHERE Shop='" + shop.getName() + "' AND Id='" + id + "';");
                 set.next();
                 String ite = set.getString("Item");
-                Map<String, Object> m = ItemUtils.deserialize(ite);
+                YamlConfiguration itemDef = new YamlConfiguration();
                 try {
-                    this.item = ItemStack.deserialize(m);
+                    itemDef.loadFromString(ite);
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    this.item = itemDef.getItemStack("i", null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    /* not needed anymore
                     this.item = ItemUtils.fromString(set.getString("Item"));
                     if (item.getItemMeta() != null) {
                         if (set.getString("Lore") != null && !set.getString("Lore").equals("null"))
@@ -186,6 +186,7 @@ public class SQLShopItem implements ShopItem {
                             }
                         }
                     }
+                    */
                 }
 
 
