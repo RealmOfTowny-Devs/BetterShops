@@ -143,6 +143,8 @@ public class SQLUtil {
                                     enchants = enchants + "||BS||" + en.getName() + "-" + item.getItem().getEnchantments().get(en);
                                 }
                             }
+                            YamlConfiguration itemDef = new YamlConfiguration();
+                            itemDef.set("i", ite);
                             int page = item.getPage();
                             int slot = item.getSlot();
                             boolean sell = item.isSelling();
@@ -165,7 +167,7 @@ public class SQLUtil {
                             boolean selleco = item.isSellEco();
                             try {
                                 Core.getConnection().createStatement().executeUpdate("INSERT IGNORE INTO " + Config.getObject("prefix") + "Items VALUES " +
-                                        "('" + shop.getName() + "', '" + idd + "', '" + ItemUtils.toString(ite) + "', '" + display + "', '" + l + "', '" + enchants + "', '" + page + "', '" + slot + "', '" + getBoolValue(sell) + "', '" + stock + "', " +
+                                        "('" + shop.getName() + "', '" + idd + "', '" + itemDef.saveToString() + "', '" + display + "', '" + l + "', '" + enchants + "', '" + page + "', '" + slot + "', '" + getBoolValue(sell) + "', '" + stock + "', " +
                                         "'" + amt + "', '" + price + "', '" + origPrice + "', '" + getBoolValue(infinite) + "', '" + getBoolValue(liveEco) + "', '" + percent + "', " +
                                         "'" + doubleAmt + "', '" + min + "', '" + max + "', '" + adjust + "', '" + item.getLimit() + "'" +
                                         ", '" + autoStock + "', '" + transCool + "', '" + auto + "', '" + trans + "', '" + cool + "', '" + selleco + "');");
