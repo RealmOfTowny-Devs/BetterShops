@@ -86,7 +86,12 @@ public class Opener implements Listener {
                         public void run() {
 
                             if (shop.getOwner() != null) {
-                                if (!shop.getBlacklist().contains(p)) {
+                                boolean isBlacklisted = shop.getBlacklist().contains(p);
+                                boolean canBypass = Permissions.hasBypassBlacklistPerm(p);
+                                if (!isBlacklisted || canBypass) {
+                                    if (isBlacklisted && canBypass){
+                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                                    }
                                     if (shop.getOwner().getUniqueId().toString().equals(p.getUniqueId().toString())) {
                                         if ((boolean) Config.getObject("UseChests")) {
                                             e.setCancelled(false);
@@ -141,7 +146,12 @@ public class Opener implements Listener {
                         @Override
                         public void run() {
                             if (shop.getOwner() != null) {
-                                if (!shop.getBlacklist().contains(p)) {
+                                boolean isBlacklisted = shop.getBlacklist().contains(p);
+                                boolean canBypass = Permissions.hasBypassBlacklistPerm(p);
+                                if (!isBlacklisted || canBypass) {
+                                    if (isBlacklisted && canBypass){
+                                        p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                                    }
                                     if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId())) || !Core.getEconomy().hasAccount(shop.getOwner())) {
                                         p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
                                     } else {

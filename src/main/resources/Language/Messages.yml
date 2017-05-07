@@ -190,6 +190,8 @@ Trade: '&aSuccessfully traded items.'
 
 NotAllowed: '&cYou are not allowed to use this shop.'
 
+BypassingBlacklist: '&cWarning! You are blacklisted in this shop. Bypassing...'
+
 HighStock: '&cCannot add any more stock to this item.'
 
 FullShop: '&cYour shop if full.'

@@ -3,6 +3,7 @@ package max.hubbard.bettershops.Shops.Types.Holo.Icons;
 import max.hubbard.bettershops.Configurations.Language;
 import com.gmail.filoghost.holographicdisplays.api.handler.TouchHandler;
 import com.gmail.filoghost.holographicdisplays.object.NamedHologram;
+import max.hubbard.bettershops.Configurations.Permissions;
 import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.Menus.MenuType;
 import max.hubbard.bettershops.Shops.Items.ShopItem;
@@ -38,15 +39,20 @@ public class ShopIcon {
                 h.appendItemLine(item.getItem()).setTouchHandler(new TouchHandler() {
                     @Override
                     public void onTouch(Player player) {
+                        boolean isBlacklisted = shop.getBlacklist().contains(player);
+                        boolean canBypass = Permissions.hasBypassBlacklistPerm(player);
 
                         if (item.isSelling()) {
                             if (player.getUniqueId().toString().equals(shop.getOwner().getUniqueId().toString()) && !shop.isServerShop()) {
                                 shop.getMenu(MenuType.ITEM_MANAGER_SELLING).draw(player,item.getPage(),item);
                             } else {
-                                if (!shop.getBlacklist().contains(player)) {
+                                if (!isBlacklisted || canBypass) {
                                     if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(player.getUniqueId())) || !Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(shop.getOwner().getUniqueId()))) {
                                         player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
                                     } else {
+                                        if (isBlacklisted && canBypass){
+                                            player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                                        }
                                         shop.getMenu(MenuType.SELL_ITEM).draw(player, item.getPage(), item.getItem(), item);
                                     }
                                 } else {
@@ -60,10 +66,13 @@ public class ShopIcon {
                             if (player.getUniqueId().toString().equals(shop.getOwner().getUniqueId().toString()) && !shop.isServerShop()) {
                                 shop.getMenu(MenuType.ITEM_MANAGER_BUYING).draw(player,item.getPage(),item);
                             } else {
-                                if (!shop.getBlacklist().contains(player)) {
+                                if (!shop.getBlacklist().contains(player) || Permissions.hasBypassBlacklistPerm(player)) {
                                     if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(player.getUniqueId())) || !Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(shop.getOwner().getUniqueId()))) {
                                         player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
                                     } else {
+                                        if (isBlacklisted && canBypass){
+                                            player.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                                        }
                                         shop.getMenu(MenuType.BUY_ITEM).draw(player, item.getPage(), item.getItem(), item);
                                     }
                                 } else {

@@ -87,6 +87,10 @@ public class Permissions {
         return p.isOp() || p.getPlayer().hasPermission("bettershops.shop.playerblacklist") || p.getPlayer().hasPermission("bettershops.shop.*");
     }
 
+    public static boolean hasBypassBlacklistPerm(OfflinePlayer p) {
+        return p.isOp() || p.getPlayer().hasPermission("bettershops.shop.bypassblacklist") || p.getPlayer().hasPermission("bettershops.shop.*");
+    }
+
     public static boolean hasAutostockPerm(OfflinePlayer p) {
         return p.isOp() || p.getPlayer().hasPermission("bettershops.shop.autostock") || p.getPlayer().hasPermission("bettershops.shop.*");
     }

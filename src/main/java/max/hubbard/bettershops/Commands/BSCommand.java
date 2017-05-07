@@ -103,7 +103,7 @@ public class BSCommand implements CommandExecutor {
                         }
 
                     } else if (args[0].equalsIgnoreCase("list")) {
-                        if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p) || !(boolean) Config.getObject("Permissions")) {
+                        if (!(boolean) Config.getObject("Permissions") || Permissions.hasListPerm(p)) {
                             List<Shop> shops = ShopManager.getShops();
                             p.sendMessage("§d<- Seznam Obchodu (§c" + shops.size() + "§d) ->");
                             for (int i = 1; i < shops.size() + 1; i++) {
@@ -134,7 +134,7 @@ public class BSCommand implements CommandExecutor {
                 } else if (args.length >= 2) {
 
                     if (args[0].equalsIgnoreCase("move")) {
-                        if ((boolean) Config.getObject("Permissions") && Permissions.hasMoveCommandPerm(p) || !(boolean) Config.getObject("Permissions")) {
+                        if (!(boolean) Config.getObject("Permissions") || Permissions.hasMoveCommandPerm(p)) {
 
                             String name = args[1];
 
@@ -168,7 +168,7 @@ public class BSCommand implements CommandExecutor {
                         }
 
                     } else if (args[0].equalsIgnoreCase("open")) {
-                        if ((boolean) Config.getObject("Permissions") && Permissions.hasOpenCommandPerm(p) || !(boolean) Config.getObject("Permissions")) {
+                        if (!(boolean) Config.getObject("Permissions") || Permissions.hasOpenCommandPerm(p)) {
 
 
                             String name = args[1];
@@ -185,11 +185,16 @@ public class BSCommand implements CommandExecutor {
                                     p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NoPermission"));
                                     return true;
                                 }
-                                if (!shop.getBlacklist().contains(p)) {
+                                boolean isBlacklisted = shop.getBlacklist().contains(p);
+                                boolean canBypass = Permissions.hasBypassBlacklistPerm(p);
+                                if (!isBlacklisted || canBypass) {
                                     if (shop.getOwner() != null) {
                                         if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
                                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
                                         } else {
+                                            if (isBlacklisted && canBypass){
+                                                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                                            }
                                             Opener.open(p, shop);
                                         }
                                     } else {
@@ -209,7 +214,7 @@ public class BSCommand implements CommandExecutor {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "NoPermission"));
                         }
                     } else if (args[0].equalsIgnoreCase("list")) {
-                        if ((boolean) Config.getObject("Permissions") && Permissions.hasListPerm(p) || !(boolean) Config.getObject("Permissions")) {
+                        if (!(boolean) Config.getObject("Permissions") || Permissions.hasListPerm(p)) {
                             String name = args[1];
 
                             for (int i = 2; i < args.length; i++) {

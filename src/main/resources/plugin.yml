@@ -72,6 +72,9 @@ permissions:
     bettershops.shop.playerblacklist:
         description: Allows ability to use the player blacklist
         default: true
+    bettershops.shop.bypassblacklist:
+        description: Allows ability to bypass the player blacklist and open the shop
+        default: op
     bettershops.shop.autostock:
         description: Allows ability to use auto stock
         default: op
@@ -107,6 +110,7 @@ permissions:
             bettershops.command.remove: true
             beetershops.command.move: true
             bettershops.command.blacklist: true
+            bettershops.shop.bypassblacklist: true
             bettershops.command.list: true
             bettershops.command.open.*: true
     bettershops.command.update:

@@ -1,6 +1,7 @@
 package max.hubbard.bettershops.Listeners;
 
 import max.hubbard.bettershops.Configurations.Language;
+import max.hubbard.bettershops.Configurations.Permissions;
 import max.hubbard.bettershops.Core;
 import max.hubbard.bettershops.ShopManager;
 import max.hubbard.bettershops.Shops.Shop;
@@ -61,10 +62,15 @@ public class NPCOpen implements Listener {
 
                     Player p = e.getPlayer();
 
-                    if (!shop.getBlacklist().contains(p)) {
+                    boolean isBlacklisted = shop.getBlacklist().contains(p);
+                    boolean canBypass = Permissions.hasBypassBlacklistPerm(p);
+                    if (!isBlacklisted || canBypass) {
                         if (!Core.getEconomy().hasAccount(Bukkit.getOfflinePlayer(p.getUniqueId()))) {
                             p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("BuyingAndSelling", "NoAccountLore"));
                         } else {
+                            if (isBlacklisted && canBypass){
+                                p.sendMessage(Language.getString("Messages", "Prefix") + Language.getString("Messages", "BypassingBlacklist"));
+                            }
                             Opener.open(p, shop);
                         }
                     } else {
