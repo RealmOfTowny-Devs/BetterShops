@@ -3,6 +3,7 @@ package max.hubbard.bettershops.Configurations;
 import max.hubbard.bettershops.Core;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -122,10 +123,9 @@ public class Language {
 
                         if (!d.equals(Core.getCore().getDescription().getVersion())) {
                             try {
-                                YamlConfiguration c = YamlConfiguration.loadConfiguration(jar.getInputStream(file));
+                                YamlConfiguration c = YamlConfiguration.loadConfiguration(new InputStreamReader(jar.getInputStream(file)));
 
                                 for (String s : c.getKeys(true)) {
-                                    config.set(s, c.get(s));
                                 }
 
                                 String name = f.getName().substring(0, f.getName().length() - 4);
