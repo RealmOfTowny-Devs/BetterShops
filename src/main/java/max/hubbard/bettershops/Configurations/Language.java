@@ -3,7 +3,7 @@ package max.hubbard.bettershops.Configurations;
 import max.hubbard.bettershops.Core;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
+import java.io.InputStreamReader;
 
 import java.io.File;
 import java.io.IOException;
