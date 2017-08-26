@@ -369,11 +369,11 @@ public class BuyItem implements ShopMenu {
                 shop.loadTransactions();
             }
 
-            shop.getHistory().addTransaction(p, new Date(), shopItem, price, amt, false, true);
-
             ShopBuyItemEvent ev = new ShopBuyItemEvent(shopItem, shop, p, new Transaction(p, new Date(), shopItem, price, amt, false));
 
             Bukkit.getPluginManager().callEvent(ev);
+
+            shop.getHistory().addTransaction(p, new Date(), shopItem, price, amt, false, true);
 
             if (shopItem.getLiveEco()) {
                 shopItem.setAmountTo(shopItem.getAmountTo() + 1);

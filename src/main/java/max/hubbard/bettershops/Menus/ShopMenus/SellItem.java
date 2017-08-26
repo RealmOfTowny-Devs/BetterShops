@@ -590,11 +590,11 @@ public class SellItem implements ShopMenu {
                 if (shop.getHistory() == null) {
                     shop.loadTransactions();
                 }
-                shop.getHistory().addTransaction(p, new Date(), shopItem, pr, price, true, true);
-
                 ShopSellItemEvent ev = new ShopSellItemEvent(shopItem, shop, p, new Transaction(p, new Date(), shopItem, pr, price, true));
 
                 Bukkit.getPluginManager().callEvent(ev);
+
+                shop.getHistory().addTransaction(p, new Date(), shopItem, pr, price, true, true);
 
                 shop.getMenu(MenuType.MAIN_SELLING).draw(p, shopItem.getPage());
 
