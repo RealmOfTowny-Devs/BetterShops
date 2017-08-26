@@ -119,7 +119,7 @@ public class Core extends JavaPlugin {
                 getCommand("shop").setExecutor(new BSCommand());
 
                 //UPDATE FILES
-                //Language.updateFiles();
+                Language.updateFiles();
 
                 //REGISTER INTERFACES
                 String packageName = this.getServer().getClass().getPackage().getName();
