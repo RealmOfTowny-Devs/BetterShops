@@ -373,7 +373,11 @@ public class BuyItem implements ShopMenu {
 
             Bukkit.getPluginManager().callEvent(ev);
 
-            shop.getHistory().addTransaction(p, new Date(), shopItem, price, amt, false, true);
+            try {
+                shop.getHistory().addTransaction(p, new Date(), shopItem, price, amt, false, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (shopItem.getLiveEco()) {
                 shopItem.setAmountTo(shopItem.getAmountTo() + 1);

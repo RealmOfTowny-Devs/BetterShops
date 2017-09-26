@@ -126,6 +126,7 @@ public class Language {
                                 YamlConfiguration c = YamlConfiguration.loadConfiguration(new InputStreamReader(jar.getInputStream(file)));
 
                                 for (String s : c.getKeys(true)) {
+                                    config.set(s, c.get(s));
                                 }
 
                                 String name = f.getName().substring(0, f.getName().length() - 4);
