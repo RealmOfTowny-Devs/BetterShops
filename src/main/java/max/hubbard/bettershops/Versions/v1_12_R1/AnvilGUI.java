@@ -321,8 +321,8 @@ public class AnvilGUI implements max.hubbard.bettershops.Versions.AnvilGUI {
 
 
         //Set their active container to the container
-        container.checkReachable = false;
         p.activeContainer = container;
+        p.activeContainer.checkReachable = false;
 
         //Set their active container window id to that counter stuff
         p.activeContainer.windowId = c;
