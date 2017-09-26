@@ -1,8 +1,8 @@
 package max.hubbard.bettershops.Configurations;
 
-import max.hubbard.bettershops.Utils.SoundManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -223,7 +223,7 @@ public class Blacklist implements Listener {
                             item.setAmount(1);
 
                             addItem(item);
-                            p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
+                            p.playSound(p.getLocation(), Sound.valueOf((String)Config.getObject("Sound-1.9")), 400, 400);
                             openBlacklistInventory(e.getInventory(), p, 1);
 
                             return;
@@ -261,7 +261,7 @@ public class Blacklist implements Listener {
                 //Remove Item
                 if (getItems().contains(e.getCurrentItem())) {
                     removeItem(e.getCurrentItem());
-                    p.playSound(p.getLocation(), SoundManager.getSound((String) Config.getObject("Sound-1.9"), (String) Config.getObject("Sound-1.8")), 400, 400);
+                    p.playSound(p.getLocation(), Sound.valueOf((String)Config.getObject("Sound-1.9")), 400, 400);
                     openBlacklistInventory(e.getInventory(), p, 1);
 
                 }

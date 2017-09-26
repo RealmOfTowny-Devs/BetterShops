@@ -87,7 +87,6 @@ CostForShops: 19.99
 EnableNPC: True
 
 # Custom GUI Sounds:
-Sound-1.8: NOTE_PLING
 Sound-1.9: BLOCK_NOTE_PLING
 
 # The Type of NPC that a shop can use
