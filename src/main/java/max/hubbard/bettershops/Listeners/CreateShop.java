@@ -133,12 +133,12 @@ public class CreateShop implements Listener {
 
                                             if ((boolean) Config.getObject("UseLWC") && Core.useLWC()) {
                                                 try {
-                                                    Protection protectionSign = LWC.getInstance().getPhysicalDatabase().registerProtection(block.getTypeId(), Protection.Type.PRIVATE, worldName, p.getName(), "", block.getX(), block.getY(), block.getZ());
+                                                    Protection protectionSign = LWC.getInstance().getPhysicalDatabase().registerProtection(block.getType().name(), Protection.Type.PRIVATE, worldName, p.getName(), "", block.getX(), block.getY(), block.getZ());
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }
                                                 try {
-                                                    Protection protectionChest = LWC.getInstance().getPhysicalDatabase().registerProtection(finalChest.getBlock().getTypeId(), Protection.Type.PRIVATE, worldName, p.getName(), "", finalChest.getBlock().getX(), finalChest.getBlock().getY(), finalChest.getBlock().getZ());
+                                                    Protection protectionChest = LWC.getInstance().getPhysicalDatabase().registerProtection(finalChest.getBlock().getType().name(), Protection.Type.PRIVATE, worldName, p.getName(), "", finalChest.getBlock().getX(), finalChest.getBlock().getY(), finalChest.getBlock().getZ());
                                                 } catch (Exception e) {
                                                     e.printStackTrace();
                                                 }
